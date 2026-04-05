@@ -1,1 +1,1 @@
-includes/*.php linguist-language=PHP
+*.html linguist-language=HTML
