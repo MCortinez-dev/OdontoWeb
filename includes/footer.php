@@ -5,7 +5,7 @@
 
 <h3>Clínica OdontoPlus</h3>
 
-<p><strong>Dirección:</strong> Av. Siempre Viva 123, Buenos Aires</p>
+<p><strong>Dirección:</strong> Av. Independencia 1011, CABA</p>
 
 <p><strong>Teléfono:</strong> +54 11 1234-5678</p>
 

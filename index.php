@@ -18,7 +18,13 @@
 
 <h2>Nosotros</h2>
 
-<p>NO LLEGO A LEER LO QUE DICE EN LA IMAGEN</p>
+<p>Nuestra clínica cuenta con más de 25 años en Argentina, renovandonos continuamente en tecnología y conocimientos</p>
+
+<div style="width: 500px; height: 300px; overflow: auto; display: flex; scroll-snap-type: x mandatory;">
+    <img src="imagen1.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 1">
+    <img src="imagen2.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 2">
+    <img src="imagen3.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 3">
+</div>
 
 </section>
 
@@ -56,21 +62,22 @@
 <section id="equipo">
 <div class="equipo-container">
 
-<article>
-<h3>Doctor 1</h3>
-<p>NO SE QUE VA ABAJO DEL NOMBRE.</p>
-<a href="https://linkedin.com">LinkedIN</a>
-<button>Reservar cita Doctor 1</button>
-<p>NOSE QUE DICE</P>
-</article>
 
-<article>
-<h3>Doctor 2</h3>
-<p>NOSE QUE VA ABAJO DEL NOMBRE.</p>
-<a href="https://linkedin.com">LinkedIN</a>
-<button>Reservar cita Doctor 2</button>
-<p>NOSE QUE DICE</P>
-</article>
+<div style="border: 1px solid #ccc; padding: 10px; width: 300px;">
+    <img src="ruta/imagen.jpg" alt="Imagen de Odontologa Julia Garrido" style="width: 100%; height: auto;">
+    <h3>Dra Julia Garrido</h3>
+    <p>Especialista Ortodoncia UBA.</p>
+    <a href="https://linkedin.com">LinkedIN</a>
+    <button>Reservar cita Dra Garrido</button>
+</div>
+
+<div style="border: 1px solid #ccc; padding: 10px; width: 300px;">
+    <img src="ruta/imagen.jpg" alt="Imagen de Odontologo Juan Perez" style="width: 100%; height: auto;">
+    <h3>Dr Juan Perez</h3>
+    <p>Especialista Endodoncia UBA.</p>
+    <a href="https://linkedin.com">LinkedIN</a>
+    <button>Reservar cita con el Dr. Perez</button>
+</div>
 
 </div>
 </section>
