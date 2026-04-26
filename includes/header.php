@@ -25,6 +25,7 @@
 <header>
 <!-- Logo -->
 <div class="logo">
+<img src="/img/logo.png" alt="Logo Empresa">
 <h1>OdontoPlus</h1>
 </div>
 
