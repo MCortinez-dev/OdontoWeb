@@ -1,29 +1,46 @@
 <!-- Llamo al header -->
 <?php include("includes/header.php"); ?>
+<link rel="stylesheet" href="css/style.css">
 
 <main>
 
-<section id="hero">
+<!-- Hero section -->
+<section class="hero">
 
-<h2>Tu sonrisa, nuestra mision</h2>
+<div class="carousel">
+<img src="./img/carrousel-1.jpg" alt="Imagen Consultorio">
+<img src="./img/carrousel-2.jpeg" alt="Imagen doctora y ninña">
+<img src="./img/carrousel-3.jpg" alt="Imagen doctor">
+<img src="./img/carrousel-4.jpg" alt="Imagen dientes y doctora">
+</div>
 
+<div class="hero-content">
+<h2>Tu sonrisa, nuestra misión</h2>
 <p>Atención odontológica integral con tecnología de punta</p>
 
-<button>Reservar cita</button>
+<a href="turno.php">
+<button id="boton_hero">RESERVE SU TURNO</button>
+</a>
+</div>
 
 </section>
 
-
-<section id="nosotros">
+<!-- Nosotros section -->
+<section class="nosotros">
 
 <h2>Nosotros</h2>
 
-<p>Nuestra clínica cuenta con más de 25 años en Argentina, renovandonos continuamente en tecnología y conocimientos</p>
+<p class="nosotros-texto">
+Nuestra clínica cuenta con más de 25 años en Argentina,
+renovándonos continuamente en tecnología y conocimientos
+</p>
 
-<div style="width: 500px; height: 300px; overflow: auto; display: flex; scroll-snap-type: x mandatory;">
-    <img src="imagen1.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 1">
-    <img src="imagen2.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 2">
-    <img src="imagen3.jpg" style="flex: 0 0 100%; scroll-snap-align: start;" alt="Descripción 3">
+<div class="nosotros-slider">
+
+<img src="./img/nosotros1.png" alt="RX Odontológica">
+<img src="./img/nosotros2.jpg" alt="Equipo odontológico">
+<img src="./img/nosotros3.jpg" alt="Implantes maqueta">
+
 </div>
 
 </section>

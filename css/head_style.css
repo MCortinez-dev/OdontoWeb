@@ -1,7 +1,7 @@
 body{
     background-color: #DBEAFE;
     margin: 0;
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 header{
@@ -62,19 +62,21 @@ header nav a{
 header nav a:hover{
     transform: scale(1.15);
     /*box-shadow: 0 4px 15px #F43F5E;*/ /*Opcion A no queda bien*/
-    background-color:#B2F5EA;
+    background-color: #00a8a8;
     padding: 4px;
     border-radius: 15px;
     box-shadow: 0 4px 15px #F43F5E; /* sombra */
 }
 
 header a #boton{
-    background-color: #B2F5EA;
+    background-color: #00a8a8;
     font-weight: bold;
+    border: none;
     border-radius: 15px;
     padding: 4px;
     transition: all 0.2s ease;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 header #boton:hover{
