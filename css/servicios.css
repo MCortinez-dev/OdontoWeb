@@ -1,0 +1,50 @@
+.servicios{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding:80px 0;
+
+    background-color: #FEE2E2;
+}
+
+.servicios h2{
+    font-size:40px;
+    margin-bottom:15px;
+    text-shadow: 3px 3px 3px rgb(84, 148, 207);
+}
+
+/* Artículos*/
+
+.servicios-container{
+
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:30px;
+
+    width:80%;
+    max-width:1000px;
+}
+
+
+.servicios-container article{
+
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgb(84, 148, 207);
+    text-align:center;
+
+    text-shadow: 3px 3px 3px rgb(84, 148, 207);
+}
+
+.servicios-container article img{
+    
+    object-fit: contain;
+    width: 300px;
+    height: 300px;
+}
+

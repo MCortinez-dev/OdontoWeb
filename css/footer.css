@@ -1,0 +1,9 @@
+footer{
+    background: #3B82F6;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 1) 0%, rgba(190, 87, 199, 1) 50%, rgba(219, 234, 254, 1) 100%);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}

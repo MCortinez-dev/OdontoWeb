@@ -45,36 +45,43 @@ renovándonos continuamente en tecnología y conocimientos
 
 </section>
 
+<!-- Servicios section -->
 
-<section id="servicios">
+<section class="servicios">
 
 <h2>Nuestros servicios</h2>
 
 <div class="servicios-container">
 
-<article>
+<article id="art_1">
 <h3>Odontología general</h3>
 <p>Arreglos de caries.</p>
+<img src="./img/art1.png" alt="Imagen Arreglo caries">
 </article>
 
-<article>
+<article id="art_2">
 <h3>Ortodoncia</h3>
 <p>Corrección de la posición dental.</p>
+<img src="./img/art2.jpg" alt="Imagen Ortodoncia">
 </article>
 
-<article>
+<article id="art_3">
 <h3>Implantes</h3>
 <p>Soluciones modernas para reemplazar piezas dentales.</p>
+<img src="./img/art3.jpg" alt="Imagen Implantes">
 </article>
 
-<article>
+<article id="art_4">
 <h3>Blanqueamiento</h3>
 <p>Tratamientos estéticos para tu sonrisa.</p>
+<img src="./img/art4.png" alt="Imagen Blanqueamiento">
 </article>
 
 </div>
 
 </section>
+
+
 
 <section id="equipo">
 <div class="equipo-container">
