@@ -17,6 +17,7 @@
 
 <!-- Ya lo dejo para cuando haga el archivo del CSS -->
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/whatsapp.css">
 
 </head>
 

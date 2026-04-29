@@ -66,12 +66,14 @@ loading="lazy">
 <!-- Copyright -->
 <div class="copyright">
 
-<p>© 2026 OdontoPlus - Todos los derechos reservados</p>
+<p>© 2026 OdontoPlus - Todos los derechos reservadost</p>
 
 </div>
 
 </footer>
 
-
+<a href="https://wa.me/5491100000000?text=Hola,%20necesito%20un%20turno" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 </body>
 </html>
