@@ -1,0 +1,21 @@
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 500px;
+    background: rgba(98, 218, 182, 0.692);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(190, 87, 199, 0.3);
+}
