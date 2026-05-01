@@ -6,26 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
-    <title>Inicio de Sesión</title>
+    <title>Registro</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
 </head>
 
 <body>
     <?php include("../includes/header.php"); ?>
     
-    <main class="m_login">
-    <section class="login" id="login">
-        <h2>Iniciar Sesión</h2>
+    <main class="m_registro">
+    <section class="registro" id="regristro">
+        <h2>Registrese</h2>
         <form action="" method="post">
+            <input type="Nombre" name="Nombre" placeholder="Nombre" required>
+            <input type="Apellido" name="Apellido" placeholder="Apellido" required>
+            <input type="DNI" name="DNI" placeholder="DNI" required>
+            <input type="Telefono" name="Telefono" placeholder="Telefono" >
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="confirm_pass" placeholder="Vuelva a ingresar contraseña" required>
             
-            <input type="submit" value="INICIAR SESIÓN" id="boton_login">
+            <input type="submit" value="REGISTRARSE" id="boton_login">
             
-            <div class="registro-link">
-                <p>¿No tiene cuenta?</p>
-                <a href="<?php echo BASE_URL; ?>views/registro.php" class="btn-registro">REGÍSTRESE</a>
-            </div>
         </form>
     </section>
     </main>

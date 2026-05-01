@@ -1,17 +1,17 @@
-.m_login {
+.m_registro {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-/* Sección de Login */
-.login {
+
+.registro {
     width: 100%;
     max-width: 450px;
     padding: 20px;
 }
 
-.login h2 {
+.registro h2 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 20px;
@@ -19,7 +19,7 @@
 }
 
 /* Formulario */
-.login form {
+.registro form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -31,8 +31,13 @@
 }
 
 /* Estilo de los inputs */
-.login input[type="email"],
-.login input[type="password"] {
+.registro input[type="nombre"],
+.registro input[type="apellido"],
+.registro input[type="dni"],
+.registro input[type="telefono"],
+.registro input[type="email"],
+.registro input[type="password"],
+.registro input[type="confirm_pass"] {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -43,7 +48,7 @@
 
 
 /* El botón */
-#boton_login {
+#boton_registro {
     background-color: #2ecc71;
     color: white;
     padding: 12px;
@@ -55,24 +60,6 @@
     transition: background 0.3s;
 }
 
-#boton_login:hover {
+#boton_registro:hover {
     background-color: #27ae60;
-}
-
-/* Link de registro */
-.registro-link {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 0.9rem;
-}
-
-.btn-registro {
-    color: #1b0092;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 5px;
-}
-
-.btn-registro:hover {
-    text-decoration: underline;
 }

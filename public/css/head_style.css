@@ -1,7 +1,7 @@
 body{
     background-color: #DBEAFE;
     margin: 0;
-    padding-top: 80px;
+    padding-top: 60px;
 }
 
 header{
@@ -13,7 +13,7 @@ header{
     box-shadow:0 2px 10px rgba(0,0,0,0.2);
 
     background: #3B82F6;
-    background: linear-gradient(90deg, rgba(59, 130, 246, 1) 0%, rgba(190, 87, 199, 1) 50%, rgba(219, 234, 254, 1) 100%);
+    background: linear-gradient(90deg, rgba(59, 130, 246, 1) 0%, rgba(190, 87, 199, 1) 50%, rgb(76, 143, 231) 100%);
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
@@ -69,11 +69,12 @@ header nav a:hover{
 }
 
 header a #boton{
-    background-color: #00a8a8;
+    background-color: #b90884;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     border: none;
     border-radius: 15px;
-    padding: 4px;
+    padding: 10px;
     transition: all 0.2s ease;
     margin-right: 10px;
     cursor: pointer;

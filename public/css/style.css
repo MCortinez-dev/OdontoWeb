@@ -1,9 +1,10 @@
 @import url("head_style.css");
+@import url("footer.css");
 @import url("hero.css");
 @import url("us.css");
 @import url("servicios.css");
-@import url("footer.css");
 @import url("login.css");
+@import url("registro.css");
 
 *{
     margin:0;
@@ -12,9 +13,16 @@
 }
 
 body{
-font-family:"Poppins", sans-serif;
+    font-family:"Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+main{
+    flex: 1;
 }
