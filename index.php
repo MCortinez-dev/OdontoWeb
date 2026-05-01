@@ -106,31 +106,6 @@
             </div>
         </section>
 
-<section id="reserva-turno">
-
-            <h2>Reservar Turno</h2>
-
-            <form>
-                <label>Nombre</label>
-                <input type="text">
-                <label>Email</label>
-                <input type="email">
-                <label>Especialidad</label>
-                
-                <select name="especialidad">
-                    <option value="">Seleccione una especialidad</option>
-                    <option value="general">Odontología general</option>
-                    <option value="ortodoncia">Ortodoncia</option>
-                    <option value="implantes">Implantes</option>
-                    <option value="blanqueamiento">Blanqueamiento</option>
-                </select>
-                    <label>Fecha del turno</label>
-                    <input type="date" name="fecha">
-                    <label>Hora del turno</label>
-                    <input type="time" name="hora">
-                    <button type="submit">Enviar</button>
-            </form>
-        </section>
     </main>
 
     <?php include("includes/footer.php"); ?>

@@ -5,6 +5,7 @@
 @import url("servicios.css");
 @import url("login.css");
 @import url("registro.css");
+@import url("user_panel.css");
 
 *{
     margin:0;
