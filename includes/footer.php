@@ -10,8 +10,8 @@
             <p><strong>Horarios:</strong></p>
             <ul>
                 <li>Lunes a Viernes: 9:00 - 18:00</li>
-                <li>Sábados: 9:00 - 13:00</li>
-                <li>Domingos: Cerrado</li>
+                <!-- <li>Sábados: 9:00 - 13:00</li> -->
+                <!-- <li>Domingos: Cerrado</li> -->
             </ul>
         </div>
 
