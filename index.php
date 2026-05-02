@@ -87,21 +87,17 @@
         </section>
 
 <section id="equipo">
-            <div class="equipo-container">
-                <div style="border: 1px solid #ccc; padding: 10px; width: 300px;">
+            <div>
+                <div>
                     <img src="<?php echo BASE_URL; ?>public/img/doctora.jpg" alt="Imagen de Odontologa Julia Garrido" style="width: 100%; height: auto;">
                     <h3>Dra Julia Garrido</h3>
                     <p>Especialista Ortodoncia UBA.</p>
-                    <a href="https://linkedin.com">LinkedIN</a>
-                    <button>Reservar cita Dra Garrido</button>
                 </div>
 
-                <div style="border: 1px solid #ccc; padding: 10px; width: 300px;">
+                <div>
                     <img src="<?php echo BASE_URL; ?>public/img/doctor.jpg" alt="Imagen de Odontologo Juan Perez" style="width: 100%; height: auto;">
                     <h3>Dr Juan Perez</h3>
                     <p>Especialista Endodoncia UBA.</p>
-                    <a href="https://linkedin.com">LinkedIN</a>
-                    <button>Reservar cita con el Dr. Perez</button>
                 </div>
             </div>
         </section>

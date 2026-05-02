@@ -54,5 +54,5 @@ INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES
 
 /* Médicos para la Tarde (13:30 a 18:00) */
 INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
-('Marta', 'Díaz', 3, 'tarde'),
+('Marta', 'Díaz', 3,  'tarde'),
 ('Roberto', 'Pérez', 4, 'tarde');
