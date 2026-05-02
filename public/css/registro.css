@@ -31,19 +31,17 @@
 }
 
 /* Estilo de los inputs */
-.registro input[type="nombre"],
-.registro input[type="apellido"],
-.registro input[type="dni"],
-.registro input[type="telefono"],
-.registro input[type="email"],
-.registro input[type="password"],
-.registro input[type="confirm_pass"] {
+.registro form input {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
     outline: none;
     transition: border-color 0.3s;
+}
+
+.registro form input:focus {
+    border-color: #ff0000;
 }
 
 

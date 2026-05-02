@@ -16,17 +16,17 @@
     <main class="m_registro">
     <section class="registro" id="regristro">
         <h2>Registrese</h2>
-        <form action="" method="post">
-            <input type="Nombre" name="Nombre" placeholder="Nombre" required>
-            <input type="Apellido" name="Apellido" placeholder="Apellido" required>
-            <input type="DNI" name="DNI" placeholder="DNI" required>
-            <input type="Telefono" name="Telefono" placeholder="Telefono" >
+        
+        <form action="<?php echo BASE_URL; ?>controllers/registro-controller.php" method="post">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido" placeholder="Apellido" required>
+            <input type="text" name="dni" placeholder="DNI" required>
+            <input type="text" name="telefono" placeholder="Teléfono">
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
-            <input type="password" name="confirm_pass" placeholder="Vuelva a ingresar contraseña" required>
-            
-            <input type="submit" value="REGISTRARSE" id="boton_login">
-            
+            <input type="password" name="confirm_pass" placeholder="Confirme contraseña" required>
+    
+            <input type="submit" value="REGISTRARSE" id="boton_login">    
         </form>
     </section>
     </main>
