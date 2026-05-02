@@ -25,7 +25,8 @@ text-shadow: 3px 3px 3px rgba(190, 87, 199, 1);
 max-width:700px;
 font-size:18px;
 margin-bottom:40px;
-text-shadow: 3px 3px 3px rgba(190, 87, 199, 1);
+font-weight: bold;
+/* text-shadow: 3px 3px 3px rgba(190, 87, 199, 1); */
 }
 
 /* slider */

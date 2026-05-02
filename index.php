@@ -1,4 +1,8 @@
-<?php include_once("config.php"); ?>
+<?php
+    include_once("config.php");
+    include("./controllers/doctor-controller.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -86,19 +90,26 @@
             </div>
         </section>
 
-<section id="equipo">
-            <div>
-                <div>
-                    <img src="<?php echo BASE_URL; ?>public/img/doctora.jpg" alt="Imagen de Odontologa Julia Garrido" style="width: 100%; height: auto;">
-                    <h3>Dra Julia Garrido</h3>
-                    <p>Especialista Ortodoncia UBA.</p>
-                </div>
-
-                <div>
-                    <img src="<?php echo BASE_URL; ?>public/img/doctor.jpg" alt="Imagen de Odontologo Juan Perez" style="width: 100%; height: auto;">
-                    <h3>Dr Juan Perez</h3>
-                    <p>Especialista Endodoncia UBA.</p>
-                </div>
+        <!-- Servicios doctores -->
+        <section class="equipo">
+            <h2>Nuestro equipo</h2>
+            
+            <div class="grid-docs">
+            <?php
+                if($resultado->num_rows > 0){
+                    while($fila = mysqli_fetch_array($resultado)){
+                        ?>
+                        <article class="doctor-detalle">
+                            <h3>Dr. <?php echo $fila[1] . " " . $fila[2]; ?></h3>
+                            <img src="./public/img/doc-<?php echo $fila[0]; ?>.png" alt="Doctor <?php echo $fila[1]; ?>" style="width: 200px;">
+                            <p>Horario: <?php echo $fila[4]; ?></p>
+                        </article>
+                        <?php
+                    }
+                } else {
+                    echo "Sección en construcción";
+                }
+            ?>
             </div>
         </section>
 
