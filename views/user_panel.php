@@ -1,4 +1,22 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); ?>
+<?php 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/user-data-logic.php');
+
+/*Sin usar SESION debo harcodear el DNI, sino lo transmitiria por sesión */
+$dni_prueba = "20111222";
+
+$sql_usuario = "SELECT * FROM pacientes WHERE dni = '$dni_prueba' ";
+$resultado = $conn->query($sql_usuario);
+
+if($resultado->num_rows > 0){
+    $fila = mysqli_fetch_array($resultado);
+    $nombre_actual = $fila[1];
+    $apellido_actual = $fila[2];
+    $dni_actual = $fila[3];
+    $email_actual = $fila[4];
+    $telefono_actual = $fila[5];
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +32,7 @@
     <?php include("../includes/header.php"); ?>
     
     <main class="m_user-p">
-
+    <!-- Sección reserva turno -->
     <section id="reserva-turno">
         <h2>Reservar Turno</h2>
         <form action="procesar_turno.php" method="POST">
@@ -34,19 +52,22 @@
         </form>
     </section>
     
+    <!-- Sección actualización datos -->
     <section class="user-p" id="user-p">
         <h2>Actualizar Datos</h2>
-        <form action="" method="post">
-            <input type="Nombre" name="Nombre" placeholder="Nombre" required>
-            <input type="Apellido" name="Apellido" placeholder="Apellido" required>
-            <input type="DNI" name="DNI" placeholder="DNI" required>
-            <input type="Telefono" name="Telefono" placeholder="Telefono" >
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <input type="email" name="confirm_email" placeholder="Vuela ingresar e-mail" required>
+        <form action="<?php echo BASE_URL; ?>controllers/user-data-logic.php" method="post">
+            <input type="text" name="nombre" value="<?php echo $nombre_actual; ?>" required>
+            <input type="text" name="apellido" value="<?php echo $apellido_actual; ?>" required>
+            <input type="text" name="dni" value="<?php echo $dni_actual; ?>" required>
+            <input type="text" name="telefono" value="<?php echo $telefono_actual; ?>">
+            <input type="email" name="email" value="<?php echo $email_actual; ?>" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             <input type="password" name="confirm_pass" placeholder="Vuelva a ingresar contraseña" required>
+            
+            <input type="submit" name="action" value="actualizar" id="boton_actualizar">  
+            <input type="submit" name="action" value="eliminar" id="boton_eliminar">
+            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (pregintar) -->
         </form>
-        <input type="submit" value="ACTUALIZAR DATOS" id="boton_actualizar">  
     </section>
 
 
