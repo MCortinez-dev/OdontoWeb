@@ -1,0 +1,88 @@
+footer{
+    background:linear-gradient(90deg, rgba(59,130,246,1) 0%, rgba(190,87,199,1) 50%, rgb(76, 143, 231) 100%);
+    width:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    color:rgb(0, 0, 0);
+}
+
+/* sección superior */
+footer .up{
+    display:flex;
+    flex-direction:row;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    width:100%;
+    max-width:1200px;
+
+    padding:40px 20px;
+    gap:40px;
+}
+
+/* columnas del footer */
+footer .up div{
+    max-width:320px;
+}
+
+/* títulos */
+footer h3{
+    margin-bottom:10px;
+    font-size:20px;
+}
+
+/* texto */
+footer p{
+    margin-bottom:5px;
+    line-height:1.5;
+}
+
+/* lista horarios */
+footer ul{
+    margin-top:5px;
+}
+
+footer li{
+    list-style:none;
+    margin-bottom:3px;
+}
+
+/* mapa */
+footer iframe{
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* redes sociales */
+
+.redes a{
+    display:block;
+    text-decoration:none;
+    color:rgb(0, 0, 0);
+
+    margin-top:6px;
+
+    transition:all 0.3s ease;
+}
+
+.redes a:hover{
+    transform:translateX(6px);
+    opacity:0.8;
+}
+
+/* copyright */
+footer .copyright{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:15px 0;
+    border-top:1px solid rgba(255,255,255,0.3);
+
+    font-size:14px;
+}
