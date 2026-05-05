@@ -7,6 +7,7 @@
 @import url("registro.css");
 @import url("user_panel.css");
 @import url("doc.css");
+@import url("calendar.css");
 
 *{
     margin:0;

@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/user-data-logic.php');
 
 /*Sin usar SESION debo harcodear el DNI, sino lo transmitiria por sesión */
-$dni_prueba = "20111222";
+$dni_prueba = "20895437";
 
 $sql_usuario = "SELECT * FROM pacientes WHERE dni = '$dni_prueba' ";
 $resultado = $conn->query($sql_usuario);
@@ -24,7 +24,7 @@ if($resultado->num_rows > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
-    <title>Turnos</title>
+    <title>Usuario</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
 </head>
 
@@ -32,6 +32,7 @@ if($resultado->num_rows > 0){
     <?php include("../includes/header.php"); ?>
     
     <main class="m_user-p">
+    
     <!-- Sección reserva turno -->
     <section id="reserva-turno">
         <h2>Reservar Turno</h2>
@@ -66,7 +67,7 @@ if($resultado->num_rows > 0){
             
             <input type="submit" name="action" value="actualizar" id="boton_actualizar">  
             <input type="submit" name="action" value="eliminar" id="boton_eliminar">
-            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (pregintar) -->
+            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (preguntar) -->
         </form>
     </section>
 

@@ -1,0 +1,144 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-controller.php');
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva de Turnos</title>
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
+    <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
+</head>
+<body>
+    <?php include("../includes/header.php"); ?>
+
+    <main class="m_turno">
+        <h2 class="titulo-seccion">Reserva de Turnos</h2>
+        
+        <!-- Formulario de Selección Mejorado -->
+        <div class="contenedor-filtros">
+            <form action="" method="POST" class="form-seleccion">
+                <div class="grupo-input">
+                    <label>Año</label>
+                    <input type="number" name="anioSeleccionado" 
+                        value="<?php echo $anioSeleccionado; ?>" 
+                        min="<?php echo $anioMin; ?>" 
+                        max="<?php echo $anioMax; ?>">
+                </div>
+
+                <div class="grupo-input">
+                    <label>Mes</label>
+                    <select name="mesSeleccionado">
+                        <?php
+                        $meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                        foreach ($meses as $i => $m) {
+                            $val = $i + 1;
+                            $sel = ($val == $mesSeleccionado) ? "selected" : "";
+                            echo "<option value='$val' $sel>$m</option>";
+                        }
+                        ?>
+                    </select>
+                </div>
+
+                <div class="grupo-input">
+                    <label>Especialidad</label>
+                    <select name="especialidad" required>
+                        <option value="1" <?php if($especialidadSeleccionada == 1) echo 'selected'; ?>>Odontología General</option>
+                        <option value="2" <?php if($especialidadSeleccionada == 2) echo 'selected'; ?>>Ortodoncia</option>
+                        <option value="3" <?php if($especialidadSeleccionada == 3) echo 'selected'; ?>>Implantes</option>
+                        <option value="4" <?php if($especialidadSeleccionada == 4) echo 'selected'; ?>>Blanqueamiento</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-buscar">VER DISPONIBILIDAD</button>
+            </form>
+        </div>
+
+        <section class="calendario-container">
+            <div class="cuadrado-dias">
+                <?php 
+                // 1. Espacios vacíos iniciales (Esto se queda igual)
+                for ($i = 0; $i < ($primerDiaSemana - 1); $i++) {
+                    echo '<div class="dia-vacio"></div>';
+                }
+
+                // 2. El bucle de los días (Mantenemos el FOR)
+                for ($dia = 1; $dia <= $cantidadDias; $dia++) {
+                    
+                    // Armamos la fecha de la celda actual
+                    $fechaCeld = "$anioSeleccionado-" . str_pad($mesSeleccionado, 2, "0", STR_PAD_LEFT) . "-" . str_pad($dia, 2, "0", STR_PAD_LEFT);
+                    
+                    // Lógica de Fin de Semana
+                    $diaSemana = date('N', strtotime($fechaCeld));
+                    $esFinde = ($diaSemana >= 6);
+
+                    // Lógica de Fecha Pasada (Comparando con $hoyReferencia que definimos en el controlador)
+                    $esPasado = ($fechaCeld < $hoyReferencia);
+
+                    // Agregamos la clase 'dia-pasado' si corresponde para el CSS
+                    echo "<div class='dia-numero " . ($esFinde ? "dia-finde" : "") . " " . ($esPasado ? "dia-pasado" : "") . "'>";
+                    echo "<span class='nro'>$dia</span>";
+                    
+                    echo "<div class='lista-horas'>";
+                    
+                    if ($esFinde) {
+                        echo "<span class='cerrado'>CERRADO</span>";
+                    } 
+                    elseif ($esPasado) {
+                        // Si el día ya pasó, mostramos un guion o lo dejamos vacío
+                        echo "<span class='no-disponible'>-</span>";
+                    } 
+                    else {
+                        // Si es un día válido (hoy o futuro), mostramos los botones de horas
+                        foreach (array_merge($horariosMañana, $horariosTarde) as $h) {
+                            $full = "$fechaCeld $h:00";
+                            
+                            if (!in_array($full, $turnosOcupados)) {
+                                echo "<form method='POST' style='display:inline;'>
+                                        <input type='hidden' name='fecha_seleccionada' value='$fechaCeld'>
+                                        <input type='hidden' name='hora_seleccionada' value='$h'>
+                                        <input type='hidden' name='mesSeleccionado' value='$mesSeleccionado'>
+                                        <input type='hidden' name='anioSeleccionado' value='$anioSeleccionado'>
+                                        <input type='hidden' name='especialidad' value='$especialidadSeleccionada'>
+                                        <button type='submit' class='hora-link'>$h</button>
+                                    </form>";
+                            }
+                        }
+                    }
+                    echo "</div></div>"; // Cerramos dia-numero y lista-horas
+                }
+                ?>
+            </div>
+        </section>
+
+        <!-- Selección de Profesional -->
+        <?php if ($fechaSeleccionada): ?>
+        <section class="seleccion-doctor">
+            <div class="alerta-seleccion">
+                <h3>Has seleccionado: <span><?php echo date("d/m/Y", strtotime($fechaSeleccionada)); ?> a las <?php echo $horaSeleccionada; ?> hs</span></h3>
+            </div>
+            
+            <?php if (count($medicosDisponibles) > 0): ?>
+                <form action="confirmar_reserva.php" method="POST" class="form-doctor">
+                    <label>Elegí a tu profesional:</label>
+                    <select name="id_medico" required>
+                        <?php foreach ($medicosDisponibles as $med): ?>
+                            <option value="<?php echo $med['cod']; ?>">Dr. <?php echo $med['nombre'] . " " . $med['apellido']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="hidden" name="fecha_final" value="<?php echo $fechaSeleccionada . ' ' . $horaSeleccionada; ?>">
+                    <button type="submit" class="btn-confirmar">CONFIRMAR TURNO AHORA</button>
+                </form>
+            <?php else: ?>
+                <p class="error-msg">Lo sentimos, no hay especialistas de esta categoría disponibles en este horario.</p>
+            <?php endif; ?>
+        </section>
+        <?php endif; ?>
+
+    </main>
+
+    <?php include("../includes/footer.php"); ?>
+</body>
+</html>
