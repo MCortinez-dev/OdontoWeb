@@ -93,6 +93,39 @@
     background-color: #8d3030;
 }
 
+/*Seccion muestra turnos */
+.contenedor-lista-turnos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.turno-card {
+    background: #fff;
+    border-left: 5px solid #009B77;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.estado-turno {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Colores según estado */
+.pendiente { background: #fff3cd; color: #856404; }
+.confirmado { background: #d4edda; color: #155724; }
+.cancelado { background: #f8d7da; color: #721c24; }
+
 /* Turnero
 #reserva-turno {
     display: flex;

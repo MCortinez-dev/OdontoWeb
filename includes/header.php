@@ -17,7 +17,7 @@
         </ul>
     </nav>
 
-    <a href="<?php echo BASE_URL; ?>turno.php">
+    <a href="<?php echo BASE_URL; ?>views/login.php">
         <button id="boton">RESERVE SU TURNO</button>
     </a>
 </header>

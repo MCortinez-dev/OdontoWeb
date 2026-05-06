@@ -20,6 +20,7 @@
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             
+            <!-- Debe dirigir al user panel -->
             <input type="submit" value="INICIAR SESIÓN" id="boton_login">
             
             <div class="registro-link">

@@ -55,6 +55,14 @@ if ($fechaSeleccionada && $horaSeleccionada) {
     $medicosDisponibles = $result->fetch_all(MYSQLI_ASSOC); // lo acomoda como array asociativo
 }
 
+// Corrección error al eliminar un turno 
+if ($fechaSeleccionada) {
+    echo "<!-- Buscando para: $fullDateTime en franja $franja -->";
+    if (empty($medicosDisponibles)) {
+        echo "<!-- No se encontraron médicos. Especialidad: $especialidadSeleccionada -->";
+    }
+}
+
 // Uso función nativa calendar de PHP (mágica)
 $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado); //Me trae cuantos días tiene el mes segun el calendario gregoriano
 $primerDiaSemana = date('N', strtotime("$anioSeleccionado-$mesSeleccionado-01")); // semana empieza lunes
@@ -64,7 +72,7 @@ $horariosTarde  = ["14:00", "14:45", "15:30", "16:15", "17:00", "17:45"];
 
 $turnosOcupados = [];
 $mesBusqueda = "$anioSeleccionado-" . str_pad($mesSeleccionado, 2, "0", STR_PAD_LEFT);
-$sql_ocupados = "SELECT fecha_turno FROM turnos WHERE fecha_turno LIKE '$mesBusqueda%'";
+$sql_ocupados = "SELECT fecha_turno FROM turnos WHERE fecha_turno LIKE '$mesBusqueda%' AND estado != 'cancelado'";
 $res_ocupados = $conn->query($sql_ocupados);
 if($res_ocupados){
     while ($row = $res_ocupados->fetch_assoc()) {
@@ -98,7 +106,6 @@ if (isset($_POST['confirmar_turno'])) {
 <!-- /---------------------------------------------------------------------------------------/ -->
 
 <!-- Consulta final luego de obtener datos
-$sql = "INSERT INTO turnos (id_pacientes, id_medico, fecha_turno, estado) VALUES (dni_procesado, id_doc_seleccionado, fecha_turno_resuelto, estado_actualizado"
 
 Intento con bucles antes de leer sobre función calendar de PHP
 
