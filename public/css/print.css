@@ -1,0 +1,37 @@
+.m_print .seccion-impresion {
+    text-align: center;
+    padding: 50px 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.m_print h2 {
+    padding-bottom: 20px;
+}
+
+.m_print .contenedor-botones-descarga {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.m_print .btn-descarga-csv {
+    background-color: #28a745;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.m_print .btn-volver-panel {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+}

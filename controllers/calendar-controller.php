@@ -94,7 +94,8 @@ if (isset($_POST['confirmar_turno'])) {
     $stmt_ins->bind_param("iiss", $id_paciente, $id_medico, $fecha_final, $estado);
     
     if ($stmt_ins->execute()) {
-        header("Location: " . BASE_URL . "views/turno.php?exito=1");
+        $nuevo_id = $conn->insert_id;
+        header("Location: " . BASE_URL . "views/print-turno.php?id=" . $nuevo_id);
         exit();
     } else {
         echo "<p class='error-msg'>Error al reservar: " . $conn->error . "</p>";

@@ -62,7 +62,9 @@ if($resultado->num_rows > 0){
                         </div>
 
                         <div class="boton-imprimir">
-                            <a href="<?php echo BASE_URL; ?>views/print-turno.php">Imprimir</a>
+                            <a href="<?php echo BASE_URL; ?>views/print-turno.php?id=<?php echo $element['turno_nro']; ?>" class="btn-print">
+                                Imprimir
+                            </a>
                         </div>
                     </article>
                 <?php endforeach; ?>
