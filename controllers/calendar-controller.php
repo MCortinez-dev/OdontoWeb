@@ -17,7 +17,7 @@ $anioMax = $anioActual + 2;
 $anioSeleccionado = isset($_POST["anioSeleccionado"]) ? (int)$_POST["anioSeleccionado"] : $anioActual;
 $mesSeleccionado = isset($_POST["mesSeleccionado"]) ? (int)$_POST["mesSeleccionado"] : $mesActual;
 
-// Validación de seguridad: si el usuario intenta entrar a un año/mes pasado por URL o POST, lo reseteamos al actual
+// Validación de seguridad: si el usuario intenta entrar a un año/mes pasado por URL o POST, lo resetea al actual
 if ($anioSeleccionado < $anioActual || ($anioSeleccionado == $anioActual && $mesSeleccionado < $mesActual)) {
     $anioSeleccionado = $anioActual;
     $mesSeleccionado = $mesActual;
@@ -30,13 +30,14 @@ $horaSeleccionada  = $_POST["hora_seleccionada"]  ?? null;
 $medicosDisponibles = [];
 
 if ($fechaSeleccionada && $horaSeleccionada) {
-    $fullDateTime = "$fechaSeleccionada $horaSeleccionada:00";
+    $fullDateTime = "$fechaSeleccionada $horaSeleccionada:00"; // agrego :00 para que no falten los segundos al guardar
     
-    // Extraemos la hora para decidir la franja
+    // Extraigo la hora para decidir la franja - se extraen datos para que se pueda operar matemáticamente
     $horaEntera = intval(substr($horaSeleccionada, 0, 2));
     
     $franja = ($horaEntera < 13) ? 'mañana' : 'tarde';
 
+    // El =? evita sql inyection y además prepara los datos para que sea más facil ingresarlos
     $sql_medicos = "SELECT m.cod, m.nombre, m.apellido 
                     FROM medicos m 
                     WHERE m.id_especialidad = ? 
@@ -46,16 +47,17 @@ if ($fechaSeleccionada && $horaSeleccionada) {
                         WHERE fecha_turno = ? 
                         AND estado != 'cancelado'
                     )";
-    
+    // Tratamientos de datos incluye preparación, securización, transformación y tratamiento para posterior uso. 
     $stmt = $conn->prepare($sql_medicos);
     $stmt->bind_param("iss", $especialidadSeleccionada, $franja, $fullDateTime);
     $stmt->execute();
     $result = $stmt->get_result();
-    $medicosDisponibles = $result->fetch_all(MYSQLI_ASSOC);
+    $medicosDisponibles = $result->fetch_all(MYSQLI_ASSOC); // lo acomoda como array asociativo
 }
 
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado);
-$primerDiaSemana = date('N', strtotime("$anioSeleccionado-$mesSeleccionado-01"));
+// Uso función nativa calendar de PHP (mágica)
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado); //Me trae cuantos días tiene el mes segun el calendario gregoriano
+$primerDiaSemana = date('N', strtotime("$anioSeleccionado-$mesSeleccionado-01")); // semana empieza lunes
 
 $horariosMañana = ["09:00", "09:45", "10:30", "11:15", "12:00", "12:45"];
 $horariosTarde  = ["14:00", "14:45", "15:30", "16:15", "17:00", "17:45"];
@@ -69,6 +71,28 @@ if($res_ocupados){
         $turnosOcupados[] = $row['fecha_turno'];
     }
 }
+// fetch_assoc - permite que los datos sean usables.
+
+if (isset($_POST['confirmar_turno'])) {
+    $id_medico = $_POST['id_medico'];
+    $fecha_final = $_POST['fecha_final'] . ":00"; // Agrega los segundos para MySQL
+    // $dni_paciente = "32444555"; // DNI de prueba
+    $id_paciente = 1; // id preueba
+    $estado = "pendiente";
+
+    $sql_insert = "INSERT INTO turnos (id_paciente, id_medico, fecha_turno, estado) VALUES (?, ?, ?, ?)";
+    $stmt_ins = $conn->prepare($sql_insert);
+    
+    $stmt_ins->bind_param("iiss", $id_paciente, $id_medico, $fecha_final, $estado);
+    
+    if ($stmt_ins->execute()) {
+        header("Location: " . BASE_URL . "views/turno.php?exito=1");
+        exit();
+    } else {
+        echo "<p class='error-msg'>Error al reservar: " . $conn->error . "</p>";
+    }
+}
+
 ?>
 
 <!-- /---------------------------------------------------------------------------------------/ -->

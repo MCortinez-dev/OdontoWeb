@@ -22,10 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
             <form action="" method="POST" class="form-seleccion">
                 <div class="grupo-input">
                     <label>Año</label>
-                    <input type="number" name="anioSeleccionado" 
-                        value="<?php echo $anioSeleccionado; ?>" 
-                        min="<?php echo $anioMin; ?>" 
-                        max="<?php echo $anioMax; ?>">
+                    <input type="number" name="anioSeleccionado" value="<?php echo $anioSeleccionado; ?>" min="<?php echo $anioMin; ?>" max="<?php echo $anioMax; ?>">
                 </div>
 
                 <div class="grupo-input">
@@ -35,7 +32,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
                         $meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
                         foreach ($meses as $i => $m) {
                             $val = $i + 1;
-                            $sel = ($val == $mesSeleccionado) ? "selected" : "";
+                            $sel = ($val == $mesSeleccionado) ? "selected" : ""; // if en una sola línea, el de la izquierda de los dos puntos es el true y el de la derecha el else
                             echo "<option value='$val' $sel>$m</option>";
                         }
                         ?>
@@ -59,15 +56,15 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
         <section class="calendario-container">
             <div class="cuadrado-dias">
                 <?php 
-                // 1. Espacios vacíos iniciales (Esto se queda igual)
+                // 1. Espacios vacíos iniciales
                 for ($i = 0; $i < ($primerDiaSemana - 1); $i++) {
                     echo '<div class="dia-vacio"></div>';
                 }
 
-                // 2. El bucle de los días (Mantenemos el FOR)
+                // 2. El bucle de los días
                 for ($dia = 1; $dia <= $cantidadDias; $dia++) {
                     
-                    // Armamos la fecha de la celda actual
+                    // Armamos la fecha de la celda actual. Necesario para usar los datos entre los archivos
                     $fechaCeld = "$anioSeleccionado-" . str_pad($mesSeleccionado, 2, "0", STR_PAD_LEFT) . "-" . str_pad($dia, 2, "0", STR_PAD_LEFT);
                     
                     // Lógica de Fin de Semana
@@ -77,8 +74,8 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
                     // Lógica de Fecha Pasada (Comparando con $hoyReferencia que definimos en el controlador)
                     $esPasado = ($fechaCeld < $hoyReferencia);
 
-                    // Agregamos la clase 'dia-pasado' si corresponde para el CSS
-                    echo "<div class='dia-numero " . ($esFinde ? "dia-finde" : "") . " " . ($esPasado ? "dia-pasado" : "") . "'>";
+                    // Agrego la clase 'dia-pasado' si corresponde para el CSS
+                    echo "<div class='dia-numero " . ($esFinde ? "dia-finde" : "") . " " . ($esPasado ? "dia-pasado" : "") . "'>"; // Concatenación dinámica
                     echo "<span class='nro'>$dia</span>";
                     
                     echo "<div class='lista-horas'>";
@@ -87,11 +84,11 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
                         echo "<span class='cerrado'>CERRADO</span>";
                     } 
                     elseif ($esPasado) {
-                        // Si el día ya pasó, mostramos un guion o lo dejamos vacío
+                        // Si el día ya pasó, muestra un guion o lo deja vacío
                         echo "<span class='no-disponible'>-</span>";
                     } 
                     else {
-                        // Si es un día válido (hoy o futuro), mostramos los botones de horas
+                        // Si es un día válido (hoy o futuro), muestra los botones de horas
                         foreach (array_merge($horariosMañana, $horariosTarde) as $h) {
                             $full = "$fechaCeld $h:00";
                             
@@ -107,7 +104,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
                             }
                         }
                     }
-                    echo "</div></div>"; // Cerramos dia-numero y lista-horas
+                    echo "</div></div>"; // Cierra dia-numero y lista-horas
                 }
                 ?>
             </div>
@@ -121,7 +118,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
             </div>
             
             <?php if (count($medicosDisponibles) > 0): ?>
-                <form action="confirmar_reserva.php" method="POST" class="form-doctor">
+                <form action="" method="POST" class="form-doctor">
                     <label>Elegí a tu profesional:</label>
                     <select name="id_medico" required>
                         <?php foreach ($medicosDisponibles as $med): ?>
@@ -129,6 +126,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
                         <?php endforeach; ?>
                     </select>
                     <input type="hidden" name="fecha_final" value="<?php echo $fechaSeleccionada . ' ' . $horaSeleccionada; ?>">
+                    <input type="hidden" name="confirmar_turno" value="1">
                     <button type="submit" class="btn-confirmar">CONFIRMAR TURNO AHORA</button>
                 </form>
             <?php else: ?>

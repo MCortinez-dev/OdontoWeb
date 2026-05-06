@@ -33,26 +33,6 @@ if($resultado->num_rows > 0){
     
     <main class="m_user-p">
     
-    <!-- Sección reserva turno -->
-    <section id="reserva-turno">
-        <h2>Reservar Turno</h2>
-        <form action="procesar_turno.php" method="POST">
-            <label>Especialidad</label>
-            <select name="especialidad" required>
-                <option value="">Seleccione una especialidad</option>
-                <option value="general">Odontología general</option>
-                <option value="ortodoncia">Ortodoncia</option>
-                <option value="implantes">Implantes</option>
-                <option value="blanqueamiento">Blanqueamiento</option>
-            </select>
-                <label>Fecha del turno</label>
-                <input type="date" name="fecha" id="fecha" required>
-                <label>Hora del turno</label>
-                <input type="time" name="hora" id="horario" required>
-                <button type="submit" id="boton_turno">SOLICITAR TURNO</button>
-        </form>
-    </section>
-    
     <!-- Sección actualización datos -->
     <section class="user-p" id="user-p">
         <h2>Actualizar Datos</h2>
@@ -71,10 +51,31 @@ if($resultado->num_rows > 0){
         </form>
     </section>
 
-
     </main>
 
     <?php include("../includes/footer.php"); ?>
     
 </body>
 </html>
+
+<!-- No borrar. Lo dejo por las dudas
+Sección reserva turno 
+<section id="reserva-turno">
+    <h2>Reservar Turno</h2>
+    <form action="procesar_turno.php" method="POST">
+        <label>Especialidad</label>
+        <select name="especialidad" required>
+            <option value="">Seleccione una especialidad</option>
+            <option value="general">Odontología general</option>
+            <option value="ortodoncia">Ortodoncia</option>
+            <option value="implantes">Implantes</option>
+            <option value="blanqueamiento">Blanqueamiento</option>
+        </select>
+            <label>Fecha del turno</label>
+            <input type="date" name="fecha" id="fecha" required>
+            <label>Hora del turno</label>
+            <input type="time" name="hora" id="horario" required>
+            <button type="submit" id="boton_turno">SOLICITAR TURNO</button>
+    </form>
+</section>
+-->

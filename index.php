@@ -36,7 +36,7 @@
                 <h2>Tu sonrisa, nuestra misión</h2>
                 <p>Atención odontológica integral con tecnología de punta</p>
 
-                <a href="<?php echo BASE_URL; ?>turno.php">
+                <a href="<?php echo BASE_URL; ?>views/login.php">
                     <button id="boton_hero">RESERVE SU TURNO</button>
                 </a>
             </div>
@@ -97,12 +97,18 @@
             <div class="grid-docs">
             <?php
                 if($resultado->num_rows > 0){
-                    while($fila = mysqli_fetch_array($resultado)){
+                    while($fila = $resultado->fetch_assoc()){
                         ?>
                         <article class="doctor-detalle">
-                            <h3>Dr. <?php echo $fila[1] . " " . $fila[2]; ?></h3>
-                            <img src="./public/img/doc-<?php echo $fila[0]; ?>.png" alt="Doctor <?php echo $fila[1]; ?>" style="width: 200px;">
-                            <p>Horario: <?php echo $fila[4]; ?></p>
+                            <h3>Dr. <?php echo $fila['nombre'] . " " . $fila['apellido']; ?></h3>
+                            
+                            <img src="./public/img/doc-<?php echo $fila['cod']; ?>.png" 
+                                alt="Doctor <?php echo $fila['nombre']; ?>" 
+                                style="width: 200px;">
+                            
+                                <p><strong>Especialidad:</strong> <?php echo $fila['especialidad']; ?></p>
+                            
+                            <p>Horario: <?php echo ucfirst($fila['franja_horaria']); ?></p>
                         </article>
                         <?php
                     }

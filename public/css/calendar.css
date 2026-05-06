@@ -1,12 +1,18 @@
 .m_turno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+    width: 100%;
     font-family: Arial, sans-serif;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
 }
 
 /* Filtros */
 .contenedor-filtros {
+    width: 90%;
+    /* max-width: 1400px; */
     background: #f4f4f4;
     padding: 20px;
     border-radius: 10px;
@@ -57,9 +63,10 @@
 
 /* Calendario */
 .calendario-container {
-    max-width: 900px;
+    width: 90%;
+    /* max-width: 1400px; */
     margin: 0 auto;
-    border: 1px solid #ddd; /* Un borde más suave queda más moderno */
+    border: 1px solid #ddd;
 }
 
 .dias-semana {
