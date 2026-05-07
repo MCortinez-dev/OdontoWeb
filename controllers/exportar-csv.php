@@ -1,4 +1,5 @@
 <?php
+// Lei mal el csv se hacia de toda la base de datos - lo dejo igual por que me costo hacerlo
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 
 if(isset($_GET['id'])){

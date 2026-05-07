@@ -28,9 +28,19 @@
     font-weight: bold;
 }
 
+.m_print .btn-descarga-pdf {
+    background-color: #b42727;
+    color: white;
+    padding: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .m_print .btn-volver-panel {
     background-color: #6c757d;
     color: white;
+    margin-top: 20px;
     padding: 10px;
     text-decoration: none;
     border-radius: 5px;

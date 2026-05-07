@@ -12,7 +12,7 @@
     <meta name="description" content="Clínica odontológica OdontoPlus">
     <meta name="keywords" content="odontologia, clinica dental, implantes">
     <meta name="author" content="Damian Dominguez & Cortinez Matias">
-    <title>OdontoWeb</title>
+    <title>Odonto➕PLUS🦷</title>
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
 </head>

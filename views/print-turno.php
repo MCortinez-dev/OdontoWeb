@@ -24,6 +24,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
                         DESCARGAR COMPROBANTE (Excel/CSV)
                     </a>
 
+                    <a href="<?php echo BASE_URL; ?>controllers/exportar-pdf.php?id=<?php echo $_GET['id']; ?>" class="btn-descarga-pdf">
+                    DESCARGAR COMPROBANTE (PDF)
+                    </a>
+
                     <a href="user_panel.php" class="btn-volver-panel">
                         VOLVER AL PANEL DE USUARIO
                     </a>
