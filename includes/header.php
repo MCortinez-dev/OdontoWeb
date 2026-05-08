@@ -39,11 +39,27 @@
             <li><a href="<?php echo BASE_URL; ?>index.php#nosotros">NOSOTROS</a></li>
             <li><a href="<?php echo BASE_URL; ?>index.php#servicios">SERVICIOS</a></li>
             <li><a href="<?php echo BASE_URL; ?>index.php#contacto">CONTACTO</a></li>
-            <li><a href="<?php echo BASE_URL; ?>views/login.php">LOGIN</a></li>
+            <li><a href="#modal-login">LOGIN</a></li>
         </ul>
     </nav>
 
     <a href="<?php echo BASE_URL; ?>turno.php">
         <button id="boton">RESERVE SU TURNO</button>
     </a>
+    <div id="modal-login" class="modal-container">
+    <div class="modal-content">
+        <a href="#" class="modal-close">&times;</a>
+        <h2>¿Cómo desea ingresar?</h2>
+        <p>Seleccione su tipo de perfil para continuar</p>
+        
+        <div class="modal-buttons">
+            <a href="<?php echo BASE_URL; ?>views/login.php" class="btn-perfil paciente">
+                <span class="icon">👤</span> PACIENTE
+            </a>
+            <a href="<?php echo BASE_URL; ?>views/login_admin.php" class="btn-perfil admin">
+                <span class="icon">🔐</span> ADMINISTRADOR
+            </a>
+        </div>
+    </div>
+    </div>
 </header>

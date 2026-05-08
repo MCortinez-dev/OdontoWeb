@@ -26,6 +26,11 @@
                 <p>¿No tiene cuenta?</p>
                 <a href="<?php echo BASE_URL; ?>views/registro.php" class="btn-registro">REGÍSTRESE</a>
             </div>
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center;">
+                <a href="<?php echo BASE_URL; ?>views/login_admin.php" style="color: #cbd5e1; font-size: 13px; text-decoration: none;">
+                    🔒 Acceso personal del consultorio
+                </a>
+            </div>
         </form>
     </section>
     </main>
