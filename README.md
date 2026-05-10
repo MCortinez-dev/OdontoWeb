@@ -48,13 +48,13 @@ ODONTOWEB/
 
 ## 📸 Screenshots
 
-![Main](public/img/screenshots/main.pngpublic/img/screenshots/main.png)
+![Main](public/img/screenshots/main.png)
 
-![Turnos](public/img/screenshots/main.pngpublic/img/screenshots/turnos.png)
+![Turnos](public/img/screenshots/turnos.png)
 
-![Login](Odontoweb/public/img/screenshots/main.pngpublic/img/screenshots/login.png)
+![Login](public/img/screenshots/login.png)
 
-![User_Panel](Odontoweb/public/img/screenshots/main.pngpublic/img/screenshots/user_panel.png)
+![User_Panel](public/img/screenshots/user_panel.png)
 
-![Imprimir Turnos](Odontoweb/public/img/screenshots/main.pngpublic/img/screenshots/turnos_print.png)
+![Imprimir Turnos](public/img/screenshots/turnos_print.png)
 
