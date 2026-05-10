@@ -64,5 +64,5 @@ Damian Dominguez - Desarrollador - Damianmdominguez
 
 📸 Screenshots
 
-![Main](/public/img/screenshots/main.pngpublic/img/screenshots/main.png)
+![Main](public/img/screenshots/main.pngpublic/img/screenshots/main.png)
 
