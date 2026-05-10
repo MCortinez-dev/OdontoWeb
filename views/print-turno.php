@@ -28,6 +28,10 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
                     DESCARGAR COMPROBANTE (PDF)
                     </a>
 
+                    <a href="<?php echo BASE_URL; ?>controllers/enviar-email-turno.php?id=<?php echo $_GET['id']; ?>" class="btn-enviar">
+                    ENVIAR POR EMAIL (PDF)
+                    </a>
+
                     <a href="user_panel.php" class="btn-volver-panel">
                         VOLVER AL PANEL DE USUARIO
                     </a>

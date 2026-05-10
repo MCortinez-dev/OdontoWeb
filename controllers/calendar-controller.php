@@ -106,9 +106,7 @@ if (isset($_POST['confirmar_turno'])) {
 
 <!-- /---------------------------------------------------------------------------------------/ -->
 
-<!-- Consulta final luego de obtener datos
-
-Intento con bucles antes de leer sobre función calendar de PHP
+<!-- Intento con bucles antes de leer sobre función calendar de PHP
 
 $añoseleccionado = isset($_POST["anioseleccionado"]) ? $_POST["anioseleccionado"] : 2024;
 
