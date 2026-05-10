@@ -23,7 +23,6 @@
             </iframe>
         </div>
 
-
         <!-- Redes sociales -->
         <div class="redes">
             <h3>Seguinos</h3>
@@ -31,21 +30,18 @@
             <a href="https://facebook.com" target="_blank">Facebook</a><br>
             <a href="https://instagram.com" target="_blank">Instagram</a>
         </div>
-
     </section>
-
 
     <!-- Copyright -->
     <section class="copyright">
         <p>© 2026 OdontoPlus - Todos los derechos reservados</p>
     </section>
-
-    <!-- Botón WhatsApp
-    <div class="whatsapp">
-    <a href="https://wa.me/541112345678" target="_blank">
-    <button>Contactar por WhatsApp</button>
-    </a>
-    </div>-->
 </footer>
 
+<!-- Botón Flotante WhatsApp -->
+<a href="https://wa.me/5491100000000?text=Hola,%20necesito%20un%20turno" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
+</body>
+</html>
