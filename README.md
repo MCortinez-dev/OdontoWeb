@@ -49,7 +49,7 @@ Habilitar Extensiones en PHP:
 Asegurarse de tener habilitadas las extensiones gd y zip en el archivo php.ini de XAMPP.
 
 📁 Estructura del Proyecto
-Plaintext
+´´´´'''
 ODONTOWEB/
 ├── controllers/    # Lógica de negocio (Exportar PDF, Login, etc.)
 ├── includes/       # Conexión a DB y funciones globales
@@ -57,11 +57,12 @@ ODONTOWEB/
 ├── vendor/         # Librerías de Composer (TCPDF, etc.)
 ├── views/          # Archivos PHP de la interfaz de usuario
 └── index.php       # Punto de entrada al sistema
+'''´´´
 ✒️ Autores
 Matias Roberto Cortinez - Desarrollador y Técnico Electrónico - MCortinez-dev
 Damian Dominguez - Desarrollador - Damianmdominguez
 
 📸 Screenshots
 
-soon ...
+![Main](public/img/screenshots/main.png)
 
