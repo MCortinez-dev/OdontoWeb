@@ -56,5 +56,5 @@ ODONTOWEB/
 
 ![User_Panel](public/img/screenshots/user_panel.png)
 
-![Imprimir Turnos](public/img/screenshots/print_turno)
+![Imprimir Turnos](public/img/screenshots/print_turno.png)
 
