@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/user-data-logic.php');
 
 /*Sin usar SESION debo harcodear el DNI, sino lo transmitiria por sesión */
-$dni_prueba = "20111222";
+$dni_prueba = "32444555";
 
 $sql_usuario = "SELECT * FROM pacientes WHERE dni = '$dni_prueba' ";
 $resultado = $conn->query($sql_usuario);
@@ -24,7 +24,7 @@ if($resultado->num_rows > 0){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
-    <title>Turnos</title>
+    <title>Usuario</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
 </head>
 
@@ -32,24 +32,46 @@ if($resultado->num_rows > 0){
     <?php include("../includes/header.php"); ?>
     
     <main class="m_user-p">
-    <!-- Sección reserva turno -->
-    <section id="reserva-turno">
-        <h2>Reservar Turno</h2>
-        <form action="procesar_turno.php" method="POST">
-            <label>Especialidad</label>
-            <select name="especialidad" required>
-                <option value="">Seleccione una especialidad</option>
-                <option value="general">Odontología general</option>
-                <option value="ortodoncia">Ortodoncia</option>
-                <option value="implantes">Implantes</option>
-                <option value="blanqueamiento">Blanqueamiento</option>
-            </select>
-                <label>Fecha del turno</label>
-                <input type="date" name="fecha" id="fecha" required>
-                <label>Hora del turno</label>
-                <input type="time" name="hora" id="horario" required>
-                <button type="submit" id="boton_turno">SOLICITAR TURNO</button>
-        </form>
+
+    <!-- Sección muestra turnos -->
+    <section class="tus-turnos">
+        <h2>Tus turnos</h2>
+        
+        <?php if (!empty($misTurnos)): ?>
+            <div class="contenedor-lista-turnos">
+                <?php foreach ($misTurnos as $element): ?>
+                    <article class="turno-card">
+                        <div class="info-principal">
+                            <strong><?php echo $element['especialidad']; ?></strong>
+                        </div>
+                        
+                        <div class="detalles">
+                            <p>Médico: <?php echo $element['doc_nombre'] . " " . $element['doc_apellido']; ?></p>
+                            <p>Fecha: <?php echo date("d/m/Y H:i", strtotime($element['fecha_hora'])); ?> hs</p>
+                        </div>
+
+                        <div class="estado-turno <?php echo $element['estado']; ?>">
+                            <?php echo ucfirst($element['estado']); ?>
+                        </div>
+
+                        <div class="boton-borrar">
+                            <a href="user_panel.php?accion=borrar&id=<?php echo $element['turno_nro']; ?>" 
+                            onclick="return confirm('¿Borrar turno?');">
+                            Eliminar
+                            </a>
+                        </div>
+
+                        <div class="boton-imprimir">
+                            <a href="<?php echo BASE_URL; ?>views/print-turno.php?id=<?php echo $element['turno_nro']; ?>" class="btn-print">
+                                Imprimir
+                            </a>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p class="alerta-sin-turnos">Todavía no tenés turnos programados.</p>
+        <?php endif; ?>
     </section>
     
     <!-- Sección actualización datos -->
@@ -66,10 +88,9 @@ if($resultado->num_rows > 0){
             
             <input type="submit" name="action" value="actualizar" id="boton_actualizar">  
             <input type="submit" name="action" value="eliminar" id="boton_eliminar">
-            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (pregintar) -->
+            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (preguntar) -->
         </form>
     </section>
-
 
     </main>
 
@@ -77,3 +98,25 @@ if($resultado->num_rows > 0){
     
 </body>
 </html>
+
+<!-- No borrar. Lo dejo por las dudas
+Sección reserva turno 
+<section id="reserva-turno">
+    <h2>Reservar Turno</h2>
+    <form action="procesar_turno.php" method="POST">
+        <label>Especialidad</label>
+        <select name="especialidad" required>
+            <option value="">Seleccione una especialidad</option>
+            <option value="general">Odontología general</option>
+            <option value="ortodoncia">Ortodoncia</option>
+            <option value="implantes">Implantes</option>
+            <option value="blanqueamiento">Blanqueamiento</option>
+        </select>
+            <label>Fecha del turno</label>
+            <input type="date" name="fecha" id="fecha" required>
+            <label>Hora del turno</label>
+            <input type="time" name="hora" id="horario" required>
+            <button type="submit" id="boton_turno">SOLICITAR TURNO</button>
+    </form>
+</section>
+-->

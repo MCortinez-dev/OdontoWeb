@@ -15,7 +15,7 @@
     
     <main class="m_registro">
     <section class="registro" id="regristro">
-        <h2>REGISTRATE</h2>
+        <h2>Registrarse</h2>
         
         <form action="<?php echo BASE_URL; ?>controllers/registro-controller.php" method="post">
             <input type="text" name="nombre" placeholder="Nombre" required>

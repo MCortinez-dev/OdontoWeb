@@ -1,0 +1,190 @@
+.m_turno {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    /* max-width: 1200px; */
+    margin: 0 auto;
+}
+
+/* Filtros */
+.contenedor-filtros {
+    width: 90%;
+    /* max-width: 1400px; */
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-seleccion {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.grupo-input label {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+.grupo-input input, .grupo-input select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-buscar {
+    background-color: #009B77;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-buscar:hover {
+    background-color: #007a5e;
+}
+
+/* Calendario */
+.calendario-container {
+    width: 90%;
+    /* max-width: 1400px; */
+    margin: 0 auto;
+    border: 1px solid #ddd;
+}
+
+.dias-semana {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #009B77;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.cuadrado-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: white;
+}
+
+.dia-numero, .dia-vacio {
+    border: 0.5px solid #eee; /* Bordes sutiles */
+    min-height: 120px;
+    padding: 8px;
+}
+
+.dia-vacio {
+    background-color: #fafafa;
+}
+
+.dia-numero .nro {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.lista-horas {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hora-link {
+    font-size: 11px;
+    background: #e0f2f1;
+    color: #00796b;
+    padding: 4px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.hora-link:hover {
+    background: #009B77;
+    color: white;
+    transform: scale(1.05); /* Efecto visual de agrandado */
+}
+
+/* Selección Final */
+.seleccion-doctor {
+    margin-top: 30px;
+    padding: 25px;
+    background: #fff;
+    border: 2px dashed #009B77;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.alerta-seleccion {
+    background: #e0f2f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.btn-confirmar {
+    background: #009B77;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.error-msg {
+    background: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.dia-finde {
+    background-color: #f2f2f2; /* Gris claro */
+    color: #999;
+}
+
+.cerrado {
+    font-size: 10px;
+    font-weight: bold;
+    color: #cc0000;
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+}
+
+.dia-pasado {
+    background-color: #f9f9f9;
+    opacity: 0.6;
+    pointer-events: none; /* Bloquea cualquier click */
+}
+
+.no-disponible {
+    color: #ccc;
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 10px;
+}

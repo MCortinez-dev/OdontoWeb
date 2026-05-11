@@ -2,6 +2,38 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 
+$id_paciente_logueado = 1; // reemplazar cuando se implemente sesion
+
+$sql_reporte = "SELECT 
+                t.id AS turno_nro,
+                e.nombre AS especialidad,
+                m.nombre AS doc_nombre, 
+                m.apellido AS doc_apellido,
+                t.fecha_turno AS fecha_hora,
+                t.estado
+                FROM turnos t
+                JOIN pacientes p ON t.id_paciente = p.id
+                JOIN medicos m ON t.id_medico = m.cod
+                JOIN especialidad e ON m.id_especialidad = e.cod
+                WHERE p.id = ? 
+                ORDER BY t.fecha_turno DESC";
+
+$stmt = $conn->prepare($sql_reporte);
+$stmt->bind_param("i", $id_paciente_logueado);
+$stmt->execute();
+$misTurnos = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+/* Borrar turno */
+if (isset($_GET['accion']) && $_GET['accion'] == 'borrar') {
+    $id = $_GET['id'];
+    
+    $sql = "DELETE FROM turnos WHERE id = $id";
+    $conn->query($sql);
+    
+    header("Location: user_panel.php");
+}
+
+/* Actualización datos */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action']; // ¿Que botón tocó?

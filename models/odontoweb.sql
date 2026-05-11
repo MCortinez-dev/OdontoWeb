@@ -56,3 +56,19 @@ INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES
 INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
 ('Marta', 'Díaz', 3,  'tarde'),
 ('Roberto', 'Pérez', 4, 'tarde');
+
+/* Medicos para probar por errores en calendario */
+INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
+('Ricardo', 'Tapia', 1, 'tarde'),
+('Elena', 'Blanco', 2, 'tarde'),
+('Mario', 'Bro', 3, 'mañana'),
+('Lucía', 'Pérez', 4, 'mañana');
+
+/* Agrego especialistas en odontoligia general */
+-- Un segundo médico para la Mañana
+INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
+('Ricardo', 'Darin', 1, 'mañana'); 
+
+-- Un segundo médico para la Tarde
+INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
+('Sofía', 'Rodríguez', 1, 'tarde');
