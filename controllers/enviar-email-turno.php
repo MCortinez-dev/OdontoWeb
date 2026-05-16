@@ -1,4 +1,13 @@
 <?php
+session_start();
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
+
+if (!isset($_SESSION['paciente_id'])) {
+    die("Acceso no autorizado.");
+}
+
+$id_paciente = $_SESSION['paciente_id'];
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 //Sin Composer
 require ($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/vendor/PHPMailer-master/src/Exception.php');
@@ -28,9 +37,9 @@ if(isset($_GET['id'])){
             JOIN medicos m ON t.id_medico = m.cod 
             JOIN especialidad e ON m.id_especialidad = e.cod
             JOIN pacientes p ON t.id_paciente = p.id
-            WHERE t.id = ?";
+            WHERE t.id = ? AND t.id_paciente = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_turno);
+    $stmt->bind_param("ii", $id_turno, $id_paciente);
     $stmt->execute();
     $turno = $stmt->get_result()->fetch_assoc();
 }

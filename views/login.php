@@ -1,4 +1,12 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); ?>
+<?php 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
+
+// Por si tiene una sesión ya iniciada, lo envia al panel de usuario.
+if (isset($_SESSION['paciente_id'])) {
+    header("Location: " . BASE_URL . "views/user_panel.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -16,7 +24,7 @@
     <main class="m_login">
     <section class="login" id="login">
         <h2>Iniciar Sesión</h2>
-        <form action="" method="post">
+        <form action="../controllers/login_controller.php" method="post">
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             

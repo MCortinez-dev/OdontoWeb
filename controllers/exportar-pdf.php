@@ -1,6 +1,13 @@
 <?php
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/lib/tcpdf/TCPDF.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
+
+if (!isset($_SESSION['paciente_id'])) {
+    die("Inicie sesión para descargar el PDF.");
+}
+
+$id_paciente = $_SESSION['paciente_id'];
 
 if(isset($_GET['id'])){
     $id_turno = $_GET['id'];
@@ -14,9 +21,9 @@ if(isset($_GET['id'])){
             JOIN medicos m ON t.id_medico = m.cod 
             JOIN especialidad e ON m.id_especialidad = e.cod
             JOIN pacientes p ON t.id_paciente = p.id
-            WHERE t.id = ?";
+            WHERE t.id = ? AND t.id_paciente = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id_turno);
+    $stmt->bind_param("ii", $id_turno, $id_paciente);
     $stmt->execute();
     $turno = $stmt->get_result()->fetch_assoc();
 
@@ -76,5 +83,7 @@ if(isset($_GET['id'])){
         // Salida
         $pdf->Output('turno_'.$id_turno.'.pdf', 'D'); 
         exit;
+    } else {
+        die("Error: Turno no válido.");
     }
 }

@@ -1,20 +1,25 @@
-<?php 
+<?php
+session_start();
+if (!isset($_SESSION['paciente_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/user-data-logic.php');
 
-/*Sin usar SESION debo harcodear el DNI, sino lo transmitiria por sesión */
-$dni_prueba = "32444555";
-
-$sql_usuario = "SELECT * FROM pacientes WHERE dni = '$dni_prueba' ";
+$paciente_id = $_SESSION['paciente_id'];
+$sql_usuario = "SELECT * FROM pacientes WHERE id = '$paciente_id' ";
 $resultado = $conn->query($sql_usuario);
 
-if($resultado->num_rows > 0){
-    $fila = mysqli_fetch_array($resultado);
-    $nombre_actual = $fila[1];
-    $apellido_actual = $fila[2];
-    $dni_actual = $fila[3];
-    $email_actual = $fila[4];
-    $telefono_actual = $fila[5];
+if($resultado && $resultado->num_rows > 0){
+    $fila = $resultado->fetch_assoc();
+    $nombre_actual = $fila['nombre'];
+    $apellido_actual = $fila['apellido'];
+    $dni_actual = $fila['DNI'];
+    $email_actual = $fila['email'];
+    $telefono_actual = $fila['telefono'];
 }
 ?>
 
@@ -83,14 +88,20 @@ if($resultado->num_rows > 0){
             <input type="text" name="dni" value="<?php echo $dni_actual; ?>" required>
             <input type="text" name="telefono" value="<?php echo $telefono_actual; ?>">
             <input type="email" name="email" value="<?php echo $email_actual; ?>" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-            <input type="password" name="confirm_pass" placeholder="Vuelva a ingresar contraseña" required>
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="password" name="confirm_pass" placeholder="Vuelva a ingresar contraseña">
             
-            <input type="submit" name="action" value="actualizar" id="boton_actualizar">  
-            <input type="submit" name="action" value="eliminar" id="boton_eliminar">
+            <input type="submit" name="action" value="ACTUALIZAR" id="boton_actualizar">  
+            <input type="submit" name="action" value="ELIMINAR" id="boton_eliminar">
             <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (preguntar) -->
         </form>
     </section>
+
+    <div style="margin-top: 30px;">
+        <a href="<?php echo BASE_URL; ?>controllers/logout.php" id="boton_cerrar" style="text-decoration: none; display: inline-block; text-align: center;">
+            CERRAR SESIÓN
+        </a>
+    </div>
 
     </main>
 
@@ -98,25 +109,3 @@ if($resultado->num_rows > 0){
     
 </body>
 </html>
-
-<!-- No borrar. Lo dejo por las dudas
-Sección reserva turno 
-<section id="reserva-turno">
-    <h2>Reservar Turno</h2>
-    <form action="procesar_turno.php" method="POST">
-        <label>Especialidad</label>
-        <select name="especialidad" required>
-            <option value="">Seleccione una especialidad</option>
-            <option value="general">Odontología general</option>
-            <option value="ortodoncia">Ortodoncia</option>
-            <option value="implantes">Implantes</option>
-            <option value="blanqueamiento">Blanqueamiento</option>
-        </select>
-            <label>Fecha del turno</label>
-            <input type="date" name="fecha" id="fecha" required>
-            <label>Hora del turno</label>
-            <input type="time" name="hora" id="horario" required>
-            <button type="submit" id="boton_turno">SOLICITAR TURNO</button>
-    </form>
-</section>
--->

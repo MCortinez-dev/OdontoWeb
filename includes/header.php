@@ -42,7 +42,7 @@
         </ul>
     </nav>
 
-    <a href="<?php echo BASE_URL; ?>views/login.php">
+    <a href="<?php echo BASE_URL; ?>views/turno.php">
         <button id="boton">RESERVE SU TURNO</button>
     </a>
     <div id="modal-login" class="modal-container">

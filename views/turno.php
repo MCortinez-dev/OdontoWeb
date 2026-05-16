@@ -1,6 +1,17 @@
 <?php
+session_start();
+if (!isset($_SESSION['paciente_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-controller.php');
+
+if (!isset($_SESSION['paciente_id'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +22,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
 </head>
+
 <body>
     <?php include("../includes/header.php"); ?>
 
@@ -134,6 +146,12 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-contro
             <?php endif; ?>
         </section>
         <?php endif; ?>
+
+        <div>
+            <a href="user_panel.php" class="boton-panel">
+                VOLVER AL PANEL DE USUARIO
+            </a>
+        </div>
 
     </main>
 

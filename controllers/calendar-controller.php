@@ -2,7 +2,12 @@
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 
-$dni = "32444555"; 
+$id_paciente_logueado = $_SESSION['paciente_id'] ?? null;
+
+if (!$id_paciente_logueado) {
+    header("Location: login.php");
+    exit();
+}
 
 // Variables de control de tiempo real
 $anioActual = (int)date("Y");
@@ -56,12 +61,12 @@ if ($fechaSeleccionada && $horaSeleccionada) {
 }
 
 // Corrección error al eliminar un turno 
-if ($fechaSeleccionada) {
-    echo "<!-- Buscando para: $fullDateTime en franja $franja -->";
-    if (empty($medicosDisponibles)) {
-        echo "<!-- No se encontraron médicos. Especialidad: $especialidadSeleccionada -->";
-    }
-}
+// if ($fechaSeleccionada) {
+//     echo "<!-- Buscando para: $fullDateTime en franja $franja -->";
+//     if (empty($medicosDisponibles)) {
+//         echo "<!-- No se encontraron médicos. Especialidad: $especialidadSeleccionada -->";
+//     }
+// }
 
 // Uso función nativa calendar de PHP (mágica)
 $cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado); //Me trae cuantos días tiene el mes segun el calendario gregoriano
@@ -79,19 +84,17 @@ if($res_ocupados){
         $turnosOcupados[] = $row['fecha_turno'];
     }
 }
-// fetch_assoc - permite que los datos sean usables.
 
+// fetch_assoc - permite que los datos sean "usables".
 if (isset($_POST['confirmar_turno'])) {
     $id_medico = $_POST['id_medico'];
     $fecha_final = $_POST['fecha_final'] . ":00"; // Agrega los segundos para MySQL
-    // $dni_paciente = "32444555"; // DNI de prueba
-    $id_paciente = 1; // id preueba
     $estado = "pendiente";
 
     $sql_insert = "INSERT INTO turnos (id_paciente, id_medico, fecha_turno, estado) VALUES (?, ?, ?, ?)";
     $stmt_ins = $conn->prepare($sql_insert);
     
-    $stmt_ins->bind_param("iiss", $id_paciente, $id_medico, $fecha_final, $estado);
+    $stmt_ins->bind_param("iiss", $id_paciente_logueado, $id_medico, $fecha_final, $estado);
     
     if ($stmt_ins->execute()) {
         $nuevo_id = $conn->insert_id;
