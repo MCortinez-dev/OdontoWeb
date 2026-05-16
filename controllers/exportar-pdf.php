@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/vendor/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/lib/tcpdf/TCPDF.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 
 if(isset($_GET['id'])){
