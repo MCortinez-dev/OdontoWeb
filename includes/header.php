@@ -38,7 +38,6 @@
             <li><a href="<?php echo BASE_URL; ?>index.php">INICIO</a></li>
             <li><a href="<?php echo BASE_URL; ?>index.php#nosotros">NOSOTROS</a></li>
             <li><a href="<?php echo BASE_URL; ?>index.php#servicios">SERVICIOS</a></li>
-            <li><a href="<?php echo BASE_URL; ?>index.php#contacto">CONTACTO</a></li>
             <li><a href="#modal-login">LOGIN</a></li>
         </ul>
     </nav>
