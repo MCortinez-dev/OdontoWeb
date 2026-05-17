@@ -33,6 +33,13 @@
 
     <h1>ODONTO PLUS</h1>
 
+    <input type="checkbox" id="menu-check">
+    <label for="menu-check" class="menu-icono">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
     <nav>
         <ul>
             <li><a href="<?php echo BASE_URL; ?>index.php">INICIO</a></li>
