@@ -29,7 +29,7 @@
 
 El proyecto sigue una arquitectura modular para separar la lógica de negocio de la interfaz de usuario:
 
-```text
+```
 ODONTOWEB/
 ├── controllers/          # Lógica de control y procesamiento de datos
 │   ├── calendar-controller.php   # Lógica del calendario y disponibilidad
@@ -62,7 +62,8 @@ ODONTOWEB/
 │
 ├── config.php            # Configuración de rutas y constantes globales
 ├── index.php             # Punto de entrada principal
-└── README.md             # Documentación del proyecto´´´
+└── README.md             # Documentación del proyecto
+```
 
 ## ✒️ Autores
    - Matias Roberto Cortinez - Desarrollador y Técnico Electrónico - MCortinez-dev
