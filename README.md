@@ -60,6 +60,8 @@ ODONTOWEB/
 │   ├── user_panel.php            # Panel de gestión del paciente
 │   └── ... (panel_admin, registro, vista de impresión)
 │
+├── vendor/                  # Librerías externas ocultas (instalación manual)
+│   └── PHPmailer/                    # Motor de envío de email
 ├── config.php            # Configuración de rutas y constantes globales
 ├── index.php             # Punto de entrada principal
 └── README.md             # Documentación del proyecto
