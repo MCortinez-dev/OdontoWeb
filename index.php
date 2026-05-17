@@ -91,7 +91,7 @@
         </section>
 
         <!-- Servicios doctores -->
-        <section class="equipo">
+        <section class="equipo" id="equipo">
             <h2>Nuestro equipo</h2>
             
             <div class="grid-docs">
