@@ -62,7 +62,8 @@ ODONTOWEB/
 │
 ├── config.php            # Configuración de rutas y constantes globales
 ├── index.php             # Punto de entrada principal
-└── README.md             # Documentación del proyecto
+└── README.md             # Documentación del proyecto´´´
+
 ## ✒️ Autores
    - Matias Roberto Cortinez - Desarrollador y Técnico Electrónico - MCortinez-dev
    - Damian Dominguez - Desarrollador - Damianmdominguez
