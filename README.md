@@ -1,36 +1,28 @@
-# 🦷 OdontoWeb - Sistema de Gestión Odontológica
+# 🦷 ODONTOWEB - Sistema de Gestión Odontológica
 
-OdontoWeb es una plataforma integral desarrollada en PHP para la gestión de turnos, profesionales y pacientes en clínicas dentales. El sistema permite digitalizar el flujo de atención, desde la solicitud del turno hasta la generación del comprobante profesional en PDF.
+**ODONTOWEB** es una solución integral para la gestión de clínicas dentales, diseñada para optimizar la interacción entre pacientes y profesionales. El sistema permite una reserva de turnos fluida, administración de especialistas y exportación de datos críticos para la gestión administrativa.
 
-## 🚀 Características Principales
-- Gestión de Turnos: Interfaz dinámica para la asignación y visualización de citas.
-- Exportación de Comprobantes: Generación automática de comprobantes de turno en formato PDF (utilizando la librería TCPDF).
-- Panel de Administración: Gestión de base de datos para médicos, especialidades y pacientes.
-- Seguridad: Implementación de hashing de contraseñas y validación de sesiones.
-- Reportes en CSV: Funcionalidad para exportar listados de turnos a formatos compatibles con hojas de cálculo.
+## 🚀 Funcionalidades Clave
+
+- **Calendario Dinámico:** Interfaz visual para la selección de turnos con validación de disponibilidad en tiempo real.
+- **Gestión de Especialidades:** Filtros inteligentes por Odontología General, Ortodoncia, Implantes y Blanqueamiento.
+- **Panel de Usuario:** Los pacientes pueden gestionar sus perfiles y visualizar sus citas programadas.
+- **Exportación de Datos:** Herramienta integrada para exportar confirmaciones y listados de turnos en formato **CSV** y **PDF**.
+- **Seguridad:** Sistema de login con validación de sesiones, roles diferenciados y hashing de contraseñas.
+- **Comunicación:** Integración con PHPMailer para notificaciones y botones de contacto directo.
 
 ## 🛠️ Stack Tecnológico
-- Backend: PHP 8.x
-- Base de Datos: MySQL / MariaDB
-- Frontend: HTML5, CSS3, JavaScript
-- Dependencias: * Composer (Gestor de dependencias)
-- TCPDF (Generación de PDF)
-- Servidor Local: XAMPP
+
+- **Backend:** PHP 8.x
+- **Base de Datos:** MySQL
+- **Frontend:** HTML5, CSS3 (Diseño responsivo y modular)
+- **Lógica de Negocio:** Arquitectura basada en Controladores y Vistas (MVC-ish).
 
 ## 📋 Requisitos e Instalación
-Para replicar este entorno en tu máquina local:
-1. Clonar el repositorio:
-   - ```git clone https://github.com/MCortinez-dev/OdontoWeb.git```
-2. Configurar el Servidor:
-   - Mover la carpeta del proyecto a C:\xampp\htdocs\.
-3. Instalar Dependencias:
-Desde la terminal en la raíz del proyecto:
-   - ```composer install```
-4. Base de Datos:
-   - Crear una base de datos llamada odontoweb.
-   - Importar el archivo SQL (ubicado en /db/odontoweb.sql o similar).
-5. Habilitar Extensiones en PHP:
-   - Asegurarse de tener habilitadas las extensiones gd y zip en el archivo php.ini de XAMPP.
+1. Clonar el repositorio: `git clone https://github.com/tu-usuario/ODONTOWEB.git`
+2. Importar la base de datos `odontoweb.sql` en tu servidor local (XAMPP/WAMP).
+3. Configurar las credenciales en `config.php`.
+4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
 ## 📁 Estructura del Proyecto
 ```
@@ -50,11 +42,15 @@ ODONTOWEB/
 
 ![Main](public/img/screenshots/main.png)
 
-![Turnos](public/img/screenshots/turnos.png)
+![Modal](public/img/screenshots/modal.png)
 
 ![Login](public/img/screenshots/login.png)
 
+![Registro](public/img/screenshots/registro.png)
+
 ![User_Panel](public/img/screenshots/user_panel.png)
+
+![Turnos](public/img/screenshots/turnos.png)
 
 ![Imprimir Turnos](public/img/screenshots/print_turno.png)
 
