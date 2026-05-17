@@ -3,7 +3,6 @@
 **ODONTOWEB** es una solución integral para la gestión de clínicas dentales, diseñada para optimizar la interacción entre pacientes y profesionales. El sistema permite una reserva de turnos fluida, administración de especialistas y exportación de datos críticos para la gestión administrativa.
 
 ## 🚀 Funcionalidades Clave
-
 - **Calendario Dinámico:** Interfaz visual para la selección de turnos con validación de disponibilidad en tiempo real.
 - **Gestión de Especialidades:** Filtros inteligentes por Odontología General, Ortodoncia, Implantes y Blanqueamiento.
 - **Panel de Usuario:** Los pacientes pueden gestionar sus perfiles y visualizar sus citas programadas.
@@ -12,7 +11,6 @@
 - **Comunicación:** Integración con PHPMailer para notificaciones y botones de contacto directo.
 
 ## 🛠️ Stack Tecnológico
-
 - **Backend:** PHP 8.x
 - **Base de Datos:** MySQL
 - **Frontend:** HTML5, CSS3 (Diseño responsivo y modular)
@@ -24,9 +22,8 @@
 3. Configurar las credenciales en `config.php`.
 4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
-## 📁 Estructura del Proyecto
-## 📂 Estructura del Proyecto
 
+## 📂 Estructura del Proyecto
 El proyecto sigue una arquitectura modular para separar la lógica de negocio de la interfaz de usuario:
 
 ```
