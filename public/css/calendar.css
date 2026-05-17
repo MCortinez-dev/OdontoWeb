@@ -1,30 +1,30 @@
+/* CALENDARIO - VERSIÓN INTEGRAL */
+
 .m_turno {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
     width: 100%;
-    font-family: Arial, sans-serif;
-    /* max-width: 1200px; */
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 /* Filtros */
 .contenedor-filtros {
     width: 90%;
-    /* max-width: 1400px; */
     background: #f4f4f4;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 25px;
+    border-radius: 15px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
 .form-seleccion {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
@@ -57,16 +57,16 @@
     transition: background 0.3s;
 }
 
-.btn-buscar:hover {
-    background-color: #007a5e;
-}
+.btn-buscar:hover { background-color: #007a5e; }
 
 /* Calendario */
 .calendario-container {
-    width: 90%;
-    /* max-width: 1400px; */
-    margin: 0 auto;
-    border: 1px solid #ddd;
+    width: 95%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
 }
 
 .dias-semana {
@@ -75,66 +75,82 @@
     background-color: #009B77;
     color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 15px 0;
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .cuadrado-dias {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    background-color: white;
 }
 
 .dia-numero, .dia-vacio {
-    border: 0.5px solid #eee; /* Bordes sutiles */
-    min-height: 120px;
-    padding: 8px;
+    border: 0.5px solid #f1f5f9;
+    min-height: 140px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.2s;
 }
 
-.dia-vacio {
-    background-color: #fafafa;
-}
+.dia-numero:hover { background-color: #fcfcfc; }
 
 .dia-numero .nro {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 8px;
+    font-weight: 800;
+    margin-bottom: 10px;
     font-size: 1.1rem;
+    color: #475569;
 }
 
+/* Horas */
 .lista-horas {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+    width: 100%;
+    align-items: center;
+}
+
+.lista-horas form {
+    width: 90%;
+    display: flex;
+    justify-content: center;
 }
 
 .hora-link {
     font-size: 11px;
     background: #e0f2f1;
     color: #00796b;
-    padding: 4px;
+    padding: 6px;
     text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #ccfbf1;
+    transition: all 0.2s ease;
     width: 100%;
-    transition: all 0.2s;
+    cursor: pointer;
 }
 
 .hora-link:hover {
     background: #009B77;
     color: white;
-    transform: scale(1.05); /* Efecto visual de agrandado */
+    transform: scale(1.05);
 }
 
-/* Selección Final */
+/* Selección de Profesional */
 .seleccion-doctor {
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 25px;
     background: #fff;
     border: 2px dashed #009B77;
     border-radius: 12px;
     text-align: center;
+    width: 90%;
+    max-width: 600px;
 }
 
 .alerta-seleccion {
@@ -142,6 +158,24 @@
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
+    color: #00796b;
+}
+
+.alerta-seleccion span { font-weight: 800; }
+
+.form-doctor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.form-doctor select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
 }
 
 .btn-confirmar {
@@ -152,9 +186,12 @@
     border-radius: 6px;
     cursor: pointer;
     font-weight: bold;
-    margin-top: 10px;
+    transition: background 0.3s;
 }
 
+.btn-confirmar:hover { background: #007a5e; }
+
+/* Estados Especiales */
 .error-msg {
     background: #ffebee;
     color: #c62828;
@@ -162,46 +199,62 @@
     border-radius: 8px;
 }
 
-.dia-finde {
-    background-color: #f2f2f2; /* Gris claro */
-    color: #999;
-}
+.dia-finde { background-color: #f8fafc; color: #94a3b8; }
 
 .cerrado {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
-    color: #cc0000;
-    text-align: center;
+    color: #dc2626;
     margin-top: 10px;
-    display: block;
 }
 
 .dia-pasado {
-    background-color: #f9f9f9;
-    opacity: 0.6;
-    pointer-events: none; /* Bloquea cualquier click */
+    background-color: #f1f5f9;
+    opacity: 0.5;
+    pointer-events: none;
 }
 
-.no-disponible {
-    color: #ccc;
-    font-size: 0.8rem;
-    display: block;
-    margin-top: 10px;
-}
+.no-disponible { color: #94a3b8; font-size: 0.9rem; }
 
 .boton_panel {
     display: inline-block;
     background-color: #6c757d;
     color: white !important;
-    margin-top: 30px;
+    margin: 30px 0;
     padding: 12px 20px;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    transition: background 0.3s;
 }
 
-.boton_panel:hover {
-    background-color: #5a6268;
-    color: white;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .dia-numero { min-height: 100px; }
+}
+
+@media (max-width: 600px) {
+    .dias-semana, .cuadrado-dias {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .dias-semana div:nth-child(6),
+    .dias-semana div:nth-child(7),
+    .dia-finde {
+        display: none;
+    }
+
+    .dia-numero {
+        min-height: 90px;
+        padding: 5px;
+    }
+
+    .hora-link {
+        font-size: 9px;
+        padding: 4px 0;
+    }
+
+    .form-seleccion {
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
