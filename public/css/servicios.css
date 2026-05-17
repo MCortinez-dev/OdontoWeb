@@ -6,45 +6,76 @@
     align-items: center;
     justify-content: center;
 
-    padding:80px 0;
+    padding:60px 20px;
 
     background-color: #FEE2E2;
 }
 
 .servicios h2{
-    font-size:40px;
-    margin-bottom:15px;
+    font-size:32px;
+    margin-bottom: 30px;
+    text-align: center;
     text-shadow: 3px 3px 3px rgb(84, 148, 207);
 }
 
 /* Artículos*/
 
 .servicios-container{
-
     display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap:30px;
-
-    width:80%;
-    /* max-width:1000px; */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 
 .servicios-container article{
-
     background:#40BFFF;
-    padding:30px;
+    padding:25px;
     border-radius:15px;
     box-shadow:0 5px 15px rgb(84, 148, 207);
     text-align:center;
-
-    /*text-shadow: 3px 3px 3px rgb(84, 148, 207);*/
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.servicios-container article img{
-    
+.servicios-container article:hover {
+    transform: translateY(-5px);
+}
+
+.servicios-container article img {
+    width: 100%;       /* Ocupa el ancho del contenedor */
+    max-width: 250px;  /* Pero no más de 250px */
+    height: auto;      /* Mantiene la proporción */
     object-fit: contain;
-    width: 300px;
-    height: 300px;
+    margin-bottom: 15px;
 }
+
+/* Tablet o pantallas medianas: 2 columnas (2 arriba y 2 abajo) */
+@media (max-width: 1024px) {
+    .servicios-container {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+    }
+}
+
+/* AJUSTES PARA CELULAR */
+@media (max-width: 768px) {
+    .servicios {
+        padding: 40px 15px;
+    }
+
+    .servicios h2 {
+        font-size: 28px;
+    }
+
+    .servicios-container {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+    }
+}
+
+
 
