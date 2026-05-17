@@ -1,5 +1,4 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 
 $id_paciente_logueado = $_SESSION['paciente_id'] ?? null;
@@ -9,91 +8,14 @@ if (!$id_paciente_logueado) {
     exit();
 }
 
-// Variables de control de tiempo real
-$anioActual = (int)date("Y");
-$mesActual = (int)date("n");
-$diaActual = (int)date("j");
-$hoyReferencia = date("Y-m-d"); // Para comparar fechas completas
-
-// Ajuste de años dinámico
-$anioMin = $anioActual;
-$anioMax = $anioActual + 2;
-
-$anioSeleccionado = isset($_POST["anioSeleccionado"]) ? (int)$_POST["anioSeleccionado"] : $anioActual;
-$mesSeleccionado = isset($_POST["mesSeleccionado"]) ? (int)$_POST["mesSeleccionado"] : $mesActual;
-
-// Validación de seguridad: si el usuario intenta entrar a un año/mes pasado por URL o POST, lo resetea al actual
-if ($anioSeleccionado < $anioActual || ($anioSeleccionado == $anioActual && $mesSeleccionado < $mesActual)) {
-    $anioSeleccionado = $anioActual;
-    $mesSeleccionado = $mesActual;
-}
-
-$especialidadSeleccionada = $_POST["especialidad"] ?? 1;
-
-$fechaSeleccionada = $_POST["fecha_seleccionada"] ?? null;
-$horaSeleccionada  = $_POST["hora_seleccionada"]  ?? null;
-$medicosDisponibles = [];
-
-if ($fechaSeleccionada && $horaSeleccionada) {
-    $fullDateTime = "$fechaSeleccionada $horaSeleccionada:00"; // agrego :00 para que no falten los segundos al guardar
-    
-    // Extraigo la hora para decidir la franja - se extraen datos para que se pueda operar matemáticamente
-    $horaEntera = intval(substr($horaSeleccionada, 0, 2));
-    
-    $franja = ($horaEntera < 13) ? 'mañana' : 'tarde';
-
-    // El =? evita sql inyection y además prepara los datos para que sea más facil ingresarlos
-    $sql_medicos = "SELECT m.cod, m.nombre, m.apellido 
-                    FROM medicos m 
-                    WHERE m.id_especialidad = ? 
-                    AND m.franja_horaria = ?
-                    AND m.cod NOT IN (
-                        SELECT id_medico FROM turnos 
-                        WHERE fecha_turno = ? 
-                        AND estado != 'cancelado'
-                    )";
-    // Tratamientos de datos incluye preparación, securización, transformación y tratamiento para posterior uso. 
-    $stmt = $conn->prepare($sql_medicos);
-    $stmt->bind_param("iss", $especialidadSeleccionada, $franja, $fullDateTime);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $medicosDisponibles = $result->fetch_all(MYSQLI_ASSOC); // lo acomoda como array asociativo
-}
-
-// Corrección error al eliminar un turno 
-// if ($fechaSeleccionada) {
-//     echo "<!-- Buscando para: $fullDateTime en franja $franja -->";
-//     if (empty($medicosDisponibles)) {
-//         echo "<!-- No se encontraron médicos. Especialidad: $especialidadSeleccionada -->";
-//     }
-// }
-
-// Uso función nativa calendar de PHP (mágica)
-$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado); //Me trae cuantos días tiene el mes segun el calendario gregoriano
-$primerDiaSemana = date('N', strtotime("$anioSeleccionado-$mesSeleccionado-01")); // semana empieza lunes
-
-$horariosMañana = ["09:00", "09:45", "10:30", "11:15", "12:00", "12:45"];
-$horariosTarde  = ["14:00", "14:45", "15:30", "16:15", "17:00", "17:45"];
-
-$turnosOcupados = [];
-$mesBusqueda = "$anioSeleccionado-" . str_pad($mesSeleccionado, 2, "0", STR_PAD_LEFT);
-$sql_ocupados = "SELECT fecha_turno FROM turnos WHERE fecha_turno LIKE '$mesBusqueda%' AND estado != 'cancelado'";
-$res_ocupados = $conn->query($sql_ocupados);
-if($res_ocupados){
-    while ($row = $res_ocupados->fetch_assoc()) {
-        $turnosOcupados[] = $row['fecha_turno'];
-    }
-}
-
-// fetch_assoc - permite que los datos sean "usables".
+// 1. Procesamiento de la reserva
 if (isset($_POST['confirmar_turno'])) {
     $id_medico = $_POST['id_medico'];
-    $fecha_final = $_POST['fecha_final'] . ":00"; // Agrega los segundos para MySQL
+    $fecha_final = $_POST['fecha_final'] . ":00"; 
     $estado = "pendiente";
 
     $sql_insert = "INSERT INTO turnos (id_paciente, id_medico, fecha_turno, estado) VALUES (?, ?, ?, ?)";
     $stmt_ins = $conn->prepare($sql_insert);
-    
     $stmt_ins->bind_param("iiss", $id_paciente_logueado, $id_medico, $fecha_final, $estado);
     
     if ($stmt_ins->execute()) {
@@ -105,41 +27,92 @@ if (isset($_POST['confirmar_turno'])) {
     }
 }
 
-?>
+// 2. Variables de control de tiempo
+$anioActual = (int)date("Y");
+$mesActual = (int)date("n");
+$diaActual = (int)date("j");
+$hoyReferencia = date("Y-m-d");
 
-<!-- /---------------------------------------------------------------------------------------/ -->
+$anioMin = $anioActual;
+$anioMax = $anioActual + 2;
 
-<!-- Intento con bucles antes de leer sobre función calendar de PHP
+$anioSeleccionado = isset($_POST["anioSeleccionado"]) ? (int)$_POST["anioSeleccionado"] : $anioActual;
+$mesSeleccionado = isset($_POST["mesSeleccionado"]) ? (int)$_POST["mesSeleccionado"] : $mesActual;
+$especialidadSeleccionada = $_POST["especialidad"] ?? 1;
 
-$añoseleccionado = isset($_POST["anioseleccionado"]) ? $_POST["anioseleccionado"] : 2024;
+// Validación de fechas pasadas
+if ($anioSeleccionado < $anioActual || ($anioSeleccionado == $anioActual && $mesSeleccionado < $mesActual)) {
+    $anioSeleccionado = $anioActual;
+    $mesSeleccionado = $mesActual;
+}
 
-$meses30 = ["Abril", "Junio", "Septiembre", "Noviembre"];
-$meses31 = ["Enero", "Marzo", "Mayo", "Julio", "Agosto", "Octubre", "Diciembre"];
+// 3. LÓGICA DE DISPONIBILIDAD
+$turnosOcupados = [];
+$mesBusqueda = "$anioSeleccionado-" . str_pad($mesSeleccionado, 2, "0", STR_PAD_LEFT);
 
-function bisiesto($año) {
-    if ($año % 4 == 0) {
-        if ($año % 100 == 0) {
-            if ($año % 400 == 0) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return true;
-        }
-    } else {
-        return false;
+// Agrupa por fecha para saber cuántos turnos hay por cada horario en la especialidad elegida
+$sql_ocupados = "SELECT t.fecha_turno, COUNT(t.id) as cantidad_reservas
+                FROM turnos t
+                JOIN medicos m ON t.id_medico = m.cod
+                WHERE t.fecha_turno LIKE ? 
+                AND m.id_especialidad = ? 
+                AND t.estado != 'cancelado'
+                GROUP BY t.fecha_turno";
+
+$stmt_oc = $conn->prepare($sql_ocupados);
+$busqueda_like = $mesBusqueda . "%";
+$stmt_oc->bind_param("si", $busqueda_like, $especialidadSeleccionada);
+$stmt_oc->execute();
+$res_ocupados = $stmt_oc->get_result();
+
+while ($row = $res_ocupados->fetch_assoc()) {
+    $fecha_hora = $row['fecha_turno'];
+    $hora_string = explode(' ', $fecha_hora)[1];
+    $hora_entera = intval(substr($hora_string, 0, 2));
+    $franja_turno = ($hora_entera < 13) ? 'mañana' : 'tarde';
+
+    // Consulta cuántos médicos hay realmente para esta especialidad y franja
+    $sql_contar = "SELECT COUNT(*) as total FROM medicos WHERE id_especialidad = ? AND franja_horaria = ?";
+    $stmt_cnt = $conn->prepare($sql_contar);
+    $stmt_cnt->bind_param("is", $especialidadSeleccionada, $franja_turno);
+    $stmt_cnt->execute();
+    $total_medicos = $stmt_cnt->get_result()->fetch_assoc()['total'];
+
+    // Si la cantidad de reservas iguala o supera la cantidad de médicos, se bloquea el horario
+    if ($row['cantidad_reservas'] >= $total_medicos) {
+        $turnosOcupados[] = $fecha_hora;
     }
 }
 
-$febrero = "Febrero";
-$dias_febrero = 0;
+// 4. Búsqueda de Médicos Disponibles (Cuando el usuario clickea una hora)
+$fechaSeleccionada = $_POST["fecha_seleccionada"] ?? null;
+$horaSeleccionada  = $_POST["hora_seleccionada"]  ?? null;
+$medicosDisponibles = [];
 
-if (bisiesto($añoseleccionado)) {
-    $dias_febrero = 29;
-} else {
-    $dias_febrero = 28;
+if ($fechaSeleccionada && $horaSeleccionada) {
+    $fullDateTime = "$fechaSeleccionada $horaSeleccionada:00";
+    $horaEntera = intval(substr($horaSeleccionada, 0, 2));
+    $franja = ($horaEntera < 13) ? 'mañana' : 'tarde';
+
+    $sql_medicos = "SELECT m.cod, m.nombre, m.apellido 
+                    FROM medicos m 
+                    WHERE m.id_especialidad = ? 
+                    AND m.franja_horaria = ?
+                    AND m.cod NOT IN (
+                        SELECT id_medico FROM turnos 
+                        WHERE fecha_turno = ? 
+                        AND estado != 'cancelado'
+                    )";
+    $stmt_m = $conn->prepare($sql_medicos);
+    $stmt_m->bind_param("iss", $especialidadSeleccionada, $franja, $fullDateTime);
+    $stmt_m->execute();
+    $medicosDisponibles = $stmt_m->get_result()->fetch_all(MYSQLI_ASSOC);
 }
 
-NO siguí con este intento, se iba a complicar con el dia de la semana donde comienza el mes.
--->
+// 5. Configuración del Calendario Visual
+$cantidadDias = cal_days_in_month(CAL_GREGORIAN, $mesSeleccionado, $anioSeleccionado);
+$primerDiaSemana = date('N', strtotime("$anioSeleccionado-$mesSeleccionado-01"));
+
+$horariosMañana = ["09:00", "09:45", "10:30", "11:15", "12:00", "12:45"];
+$horariosTarde  = ["14:00", "14:45", "15:30", "16:15", "17:00", "17:45"];
+?>

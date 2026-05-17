@@ -1,11 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['paciente_id'])) {
-    header("Location: login.php");
-    exit();
-}
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/includes/conexion.php');
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/controllers/calendar-controller.php');
 
 if (!isset($_SESSION['paciente_id'])) {
@@ -36,7 +33,6 @@ if (!isset($_SESSION['paciente_id'])) {
                     <label>Año</label>
                     <input type="number" name="anioSeleccionado" value="<?php echo $anioSeleccionado; ?>" min="<?php echo $anioMin; ?>" max="<?php echo $anioMax; ?>">
                 </div>
-
                 <div class="grupo-input">
                     <label>Mes</label>
                     <select name="mesSeleccionado">
@@ -44,28 +40,36 @@ if (!isset($_SESSION['paciente_id'])) {
                         $meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
                         foreach ($meses as $i => $m) {
                             $val = $i + 1;
-                            $sel = ($val == $mesSeleccionado) ? "selected" : ""; // if en una sola línea, el de la izquierda de los dos puntos es el true y el de la derecha el else
+                            $sel = ($val == $mesSeleccionado) ? "selected" : "";
                             echo "<option value='$val' $sel>$m</option>";
                         }
                         ?>
                     </select>
                 </div>
-
                 <div class="grupo-input">
                     <label>Especialidad</label>
                     <select name="especialidad" required>
-                        <option value="1" <?php if($especialidadSeleccionada == 1) echo 'selected'; ?>>Odontología General</option>
-                        <option value="2" <?php if($especialidadSeleccionada == 2) echo 'selected'; ?>>Ortodoncia</option>
-                        <option value="3" <?php if($especialidadSeleccionada == 3) echo 'selected'; ?>>Implantes</option>
-                        <option value="4" <?php if($especialidadSeleccionada == 4) echo 'selected'; ?>>Blanqueamiento</option>
+                        <option value="1" <?php echo ($especialidadSeleccionada == 1) ? 'selected' : ''; ?>>Odontología General</option>
+                        <option value="2" <?php echo ($especialidadSeleccionada == 2) ? 'selected' : ''; ?>>Ortodoncia</option>
+                        <option value="3" <?php echo ($especialidadSeleccionada == 3) ? 'selected' : ''; ?>>Implantes</option>
+                        <option value="4" <?php echo ($especialidadSeleccionada == 4) ? 'selected' : ''; ?>>Blanqueamiento</option>
                     </select>
                 </div>
-
                 <button type="submit" class="btn-buscar">VER DISPONIBILIDAD</button>
             </form>
         </div>
 
         <section class="calendario-container">
+            <div class="dias-semana">
+                <div>Lun</div>
+                <div>Mar</div>
+                <div>Mié</div>
+                <div>Jue</div>
+                <div>Vie</div>
+                <div class="dia-finde">Sáb</div>
+                <div class="dia-finde">Dom</div>
+            </div>
+
             <div class="cuadrado-dias">
                 <?php 
                 // 1. Espacios vacíos iniciales
@@ -148,7 +152,7 @@ if (!isset($_SESSION['paciente_id'])) {
         <?php endif; ?>
 
         <div>
-            <a href="user_panel.php" class="boton-panel">
+            <a href="user_panel.php" class="boton_panel">
                 VOLVER AL PANEL DE USUARIO
             </a>
         </div>

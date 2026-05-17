@@ -36,7 +36,7 @@
                 <h2>Tu sonrisa, nuestra misión</h2>
                 <p>Atención odontológica integral con tecnología de punta</p>
 
-                <a href="<?php echo BASE_URL; ?>views/login.php">
+                <a href="<?php echo BASE_URL; ?>views/turno.php">
                     <button id="boton_hero">RESERVE SU TURNO</button>
                 </a>
             </div>
