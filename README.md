@@ -25,15 +25,44 @@
 4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
 ## 📁 Estructura del Proyecto
-```
+## 📂 Estructura del Proyecto
+
+El proyecto sigue una arquitectura modular para separar la lógica de negocio de la interfaz de usuario:
+
+```text
 ODONTOWEB/
-├── controllers/    # Lógica de negocio (Exportar PDF, Login, etc.)
-├── includes/       # Conexión a DB y funciones globales
-├── public/         # Imágenes, estilos CSS y scripts JS
-├── vendor/         # Librerías de Composer (TCPDF, etc.)
-├── views/          # Archivos PHP de la interfaz de usuario
-└── index.php       # Punto de entrada al sistema
-```
+├── controllers/          # Lógica de control y procesamiento de datos
+│   ├── calendar-controller.php   # Lógica del calendario y disponibilidad
+│   ├── exportar-pdf.php          # Generación de reportes con TCPDF
+│   ├── exportar-csv.php          # Exportación de turnos a Excel/CSV
+│   ├── login_controller.php      # Autenticación de pacientes y admins
+│   └── ... (registro, email, gestión de doctores)
+│
+├── includes/             # Componentes reutilizables y configuración base
+│   ├── conexion.php              # Conexión centralizada a MySQL
+│   ├── header.php / footer.php   # Elementos comunes de la interfaz
+│   └── ...
+│
+├── lib/                  # Librerías externas (instalación manual)
+│   └── TCPDF/                    # Motor de generación de PDF
+│
+├── models/               # Archivos de base de datos
+│   └── odontoweb.sql             # Estructura y datos iniciales de las tablas
+│
+├── public/               # Recursos estáticos accesibles por el navegador
+│   ├── css/                      # Hojas de estilo modulares (login, user, calendar)
+│   ├── img/                      # Imágenes del sitio y galería de profesionales
+│   └── img/screenshots/          # Capturas de pantalla para documentación
+│
+├── views/                # Interfaz de usuario (Páginas finales)
+│   ├── login.php                 # Acceso para pacientes
+│   ├── turno.php                 # Interfaz de reserva de turnos
+│   ├── user_panel.php            # Panel de gestión del paciente
+│   └── ... (panel_admin, registro, vista de impresión)
+│
+├── config.php            # Configuración de rutas y constantes globales
+├── index.php             # Punto de entrada principal
+└── README.md             # Documentación del proyecto
 ## ✒️ Autores
    - Matias Roberto Cortinez - Desarrollador y Técnico Electrónico - MCortinez-dev
    - Damian Dominguez - Desarrollador - Damianmdominguez
