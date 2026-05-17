@@ -38,20 +38,20 @@ if (isset($_GET['id'])) {
         <section class="seccion-impresion">
             
             <?php if($es_dueno): ?>
-                <h2>Turno Confirmado</h2>
+                <h2>TURNO CONFIRMADO</h2>
                 <p>Descargue o imprima su comprobante</p>
                 
                 <div class="contenedor-botones-descarga">
                     <a href="<?php echo BASE_URL; ?>controllers/exportar-csv.php?id=<?php echo $_GET['id']; ?>" class="btn-descarga-csv">
-                        DESCARGAR COMPROBANTE (Excel/CSV)
+                        DESCARGAR EN CSV
                     </a>
 
                     <a href="<?php echo BASE_URL; ?>controllers/exportar-pdf.php?id=<?php echo $_GET['id']; ?>" class="btn-descarga-pdf">
-                        DESCARGAR COMPROBANTE (PDF)
+                        DESCARGAR EN PDF
                     </a>
 
                     <a href="<?php echo BASE_URL; ?>controllers/enviar-email-turno.php?id=<?php echo $_GET['id']; ?>" class="btn-enviar">
-                        ENVIAR POR EMAIL (PDF)
+                        ENVIAR PDF POR EMAIL
                     </a>
 
                     <a href="user_panel.php" class="btn-volver-panel">
