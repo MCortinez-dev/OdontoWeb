@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: login_admin.php");
+if (!isset($_SESSION['admin_id']) || $_SESSION['rol'] !== 'admin') {
+    header("Location: login.php");
     exit();
 }
 
@@ -70,7 +70,9 @@ $resultado = $conn->query($sql);
    📥 Exportar a Excel
 </a>
             
-            <a href="../controllers/logout_admin.php" style="color: #555; text-decoration: underline;">Cerrar Sesión</a>
+            <a href="<?php echo BASE_URL; ?>controllers/logout.php" id="boton_cerrar" style="text-decoration: none; display: inline-block; text-align: center;">
+            CERRAR SESIÓN
+        </a>
         </div>
 
         <table class="tabla-admin">

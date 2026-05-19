@@ -1,10 +1,18 @@
 <?php 
+// 1. INICIAR SESIÓN: Obligatorio ponerlo al principio para que funcione $_SESSION
+session_start(); 
+
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
 
-// Por si tiene una sesión ya iniciada, lo envia al panel de usuario.
-if (isset($_SESSION['paciente_id'])) {
-    header("Location: " . BASE_URL . "views/user_panel.php");
-    exit();
+// 2. AUTO-LOGIN: Si ya están logueados, los ruteamos directo a su Oficina sin pasar por el formulario
+if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol'] === 'admin') {
+        header("Location: " . BASE_URL . "views/panel_admin.php");
+        exit();
+    } elseif ($_SESSION['rol'] === 'paciente') {
+        header("Location: " . BASE_URL . "views/user_panel.php");
+        exit();
+    }
 }
 ?>
 
@@ -14,8 +22,21 @@ if (isset($_SESSION['paciente_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
-    <title>Inicio de Sesión</title>
+    <title>Inicio de Sesión - OdontoWeb</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
+    <style>
+        /* Un estilo rápido para la caja de alerta de error */
+        .alerta-error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            border: 1px solid #fca5a5;
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,27 +45,35 @@ if (isset($_SESSION['paciente_id'])) {
     <main class="m_login">
     <section class="login" id="login">
         <h2>Iniciar Sesión</h2>
+
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alerta-error">
+                <?php 
+                    if ($_GET['error'] === 'credenciales_incorrectas') {
+                        echo "⚠️ El usuario o la contraseña son incorrectos.";
+                    } elseif ($_GET['error'] === 'acceso_denegado') {
+                        echo "🔒 Debe iniciar sesión como Administrador para acceder.";
+                    } else {
+                        echo "⚠️ Ocurrió un error al intentar ingresar.";
+                    }
+                ?>
+            </div>
+        <?php endif; ?>
+
         <form action="../controllers/login_controller.php" method="post">
-            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="text" name="identificador" placeholder="Correo electrónico o Usuario" required>
             <input type="password" name="password" placeholder="Contraseña" required>
             
-            <!-- Debe dirigir al user panel -->
             <input type="submit" value="INICIAR SESIÓN" id="boton_login">
             
             <div class="registro-link">
                 <p>¿No tiene cuenta?</p>
                 <a href="<?php echo BASE_URL; ?>views/registro.php" class="btn-registro">REGÍSTRESE</a>
             </div>
-            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); text-align: center;">
-                <a href="<?php echo BASE_URL; ?>views/login_admin.php" style="color: #cbd5e1; font-size: 13px; text-decoration: none;">
-                    🔒 Acceso personal del consultorio
-                </a>
-            </div>
         </form>
     </section>
     </main>
 
     <?php include("../includes/footer.php"); ?>
-    
 </body>
 </html>
