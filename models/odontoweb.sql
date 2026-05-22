@@ -72,3 +72,5 @@ INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES
 -- Un segundo médico para la Tarde
 INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
 ('Sofía', 'Rodríguez', 1, 'tarde');
+
+-- poner usuarios para el 5
