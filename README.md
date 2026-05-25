@@ -25,6 +25,7 @@
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
 
 <div align="center" style="background-color: white; padding: 20px; border-radius: 10px;">
+
 ```mermaid
 graph TD
     %% Estilos de diseño
@@ -105,7 +106,6 @@ graph TD
     CONF_T -- UPDATE estado = 'confirmado' --> DB
     ADM_PAN_V -- Click Exportar Excel --> EXP_XLS
     EXP_XLS -- SELECT Turnos con INNER JOIN --> DB
-```
 
 ## 📂 Estructura del Proyecto
 El proyecto sigue una arquitectura modular para separar la lógica de negocio de la interfaz de usuario:
