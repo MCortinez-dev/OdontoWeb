@@ -23,7 +23,7 @@
 4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
-```
+
 <div align="center" style="background-color: white; padding: 20px; border-radius: 10px;">
 ```mermaid
 graph TD
@@ -105,8 +105,6 @@ graph TD
     CONF_T -- UPDATE estado = 'confirmado' --> DB
     ADM_PAN_V -- Click Exportar Excel --> EXP_XLS
     EXP_XLS -- SELECT Turnos con INNER JOIN --> DB
-```
-</div>
 ```
 
 ## 📂 Estructura del Proyecto
