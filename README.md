@@ -23,7 +23,8 @@
 4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
-
+```markdown
+<div align="center" style="background-color: white; padding: 20px; border-radius: 10px;">
 ```mermaid
 %%{init: {'theme': 'dark'}}%%
 graph TD
