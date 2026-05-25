@@ -26,6 +26,13 @@
 ```mermaid
 %%{init: {'theme': 'dark'}}%%
 graph TD
+    %% Estilos de diseño adaptados
+    classDef config fill:#4a3b1b,stroke:#8a6d3b,stroke-width:2px,color:#fff;
+    classDef paciente fill:#1a3644,stroke:#31708f,stroke-width:2px,color:#fff;
+    classDef admin fill:#441a1a,stroke:#a94442,stroke-width:2px,color:#fff;
+    classDef controller fill:#1b3d1b,stroke:#3c763d,stroke-width:2px,color:#fff;
+    classDef db fill:#263238,stroke:#eceff1,stroke-width:3px,color:#fff;
+    classDef libreria fill:#4a148c,stroke:#8e24aa,stroke-width:2px,color:#fff;
     %% Estilos de diseño
     classDef config fill:#fcf8e3,stroke:#8a6d3b,stroke-width:2px;
     classDef paciente fill:#d9edf7,stroke:#31708f,stroke-width:2px;
