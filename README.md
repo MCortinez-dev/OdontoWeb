@@ -23,18 +23,17 @@
 4. Acceder a `localhost/ODONTOWEB/views/login.php`.
 
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
-```markdown
+```
 <div align="center" style="background-color: white; padding: 20px; border-radius: 10px;">
 ```mermaid
-%%{init: {'theme': 'dark'}}%%
 graph TD
-    %% Estilos de diseño adaptados
-    classDef config fill:#4a3b1b,stroke:#8a6d3b,stroke-width:2px,color:#fff;
-    classDef paciente fill:#1a3644,stroke:#31708f,stroke-width:2px,color:#fff;
-    classDef admin fill:#441a1a,stroke:#a94442,stroke-width:2px,color:#fff;
-    classDef controller fill:#1b3d1b,stroke:#3c763d,stroke-width:2px,color:#fff;
-    classDef db fill:#263238,stroke:#eceff1,stroke-width:3px,color:#fff;
-    classDef libreria fill:#4a148c,stroke:#8e24aa,stroke-width:2px,color:#fff;
+    %% Estilos de diseño
+    classDef config fill:#fcf8e3,stroke:#8a6d3b,stroke-width:2px;
+    classDef paciente fill:#d9edf7,stroke:#31708f,stroke-width:2px;
+    classDef admin fill:#f2dede,stroke:#a94442,stroke-width:2px;
+    classDef controller fill:#dff0d8,stroke:#3c763d,stroke-width:2px;
+    classDef db fill:#eceff1,stroke:#37474f,stroke-width:3px;
+    classDef libreria fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px;
 
     %% Archivos de Configuración y Base de Datos
     DB[(Base de Datos:<br>odontoweb)]:::db
@@ -106,6 +105,8 @@ graph TD
     CONF_T -- UPDATE estado = 'confirmado' --> DB
     ADM_PAN_V -- Click Exportar Excel --> EXP_XLS
     EXP_XLS -- SELECT Turnos con INNER JOIN --> DB
+```
+</div>
 ```
 
 ## 📂 Estructura del Proyecto
