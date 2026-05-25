@@ -24,6 +24,7 @@
 
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 graph TD
     %% Estilos de diseño
     classDef config fill:#fcf8e3,stroke:#8a6d3b,stroke-width:2px;
