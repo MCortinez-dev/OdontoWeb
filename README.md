@@ -106,6 +106,55 @@ ADM_PAN_V -- Click Exportar Excel --> EXP_XLS
 EXP_XLS -- SELECT Turnos con INNER JOIN --> DB
 ```
 
+## 📟 Diagrama de Secuencia
+
+```
+sequenceDiagram
+    autonumber
+    actor Paciente as 👤 Paciente (Navegador)
+    participant L_C as ⚙️ login_controller.php
+    participant DB as 🗄️ Base de Datos (MySQL)
+    participant SES as 🧠 Memoria RAM ($_SESSION)
+    participant C_C as 📅 calendar-controller.php
+
+    Note over Paciente, L_C: FASE 1: Autenticación y Creación de Sesión
+    Paciente->>L_C: Envía POST ['email', 'password']
+    activate L_C
+    L_C->>DB: PREPARE & EXECUTE: SELECT id, nombre, password_hash WHERE email = ?
+    activate DB
+    DB-->>L_C: Retorna datos de la fila (Fila Encontrada)
+    deactivate DB
+    
+    Note over L_C: Ejecuta: password_verify($password, $row['password_hash'])
+    alt Hash Coincide (TRUE)
+        L_C->>SES: $_SESSION['paciente_id'] = $row['id']
+        L_C->>SES: $_SESSION['paciente_nombre'] = $row['nombre']
+        L_C->>SES: $_SESSION['rol'] = 'paciente'
+        L_C-->>Paciente: Redirección HTTP (header: user_panel.php)
+    else Hash Incorrecto (FALSE)
+        L_C-->>Paciente: Redirección con ?error=password_incorrecta
+    end
+    deactivate L_C
+
+    Note over Paciente, C_C: FASE 2: Ciclo de Vida en la Reserva de Turno
+    Paciente->>C_C: Ingresa al Calendario / Envía POST ['confirmar_turno']
+    activate C_C
+    C_C->>SES: Consulta existencia de $_SESSION['paciente_id']
+    SES-->>C_C: Devuelve $id_paciente_logueado (Ej: 5)
+    
+    alt Si $id_paciente_logueado es null
+        C_C-->>Paciente: Redirección forzada a login.php
+    else Sesión Válida
+        Note over C_C: Crea variables de entorno:<br>$id_medico = $_POST['id_medico']<br>$fecha_final = $_POST['fecha_final'] . ':00'<br>$estado = 'pendiente'
+        C_C->>DB: INSERT INTO turnos (id_paciente, id_medico, fecha_turno, estado) VALUES (?, ?, ?, ?)
+        activate DB
+        DB-->>C_C: execute() exitoso (Genera insert_id: 104)
+        deactivate DB
+        C_C-->>Paciente: Redirección a views/print-turno.php?id=104
+    end
+    deactivate C_C
+```
+
 ## 📂 Estructura del Proyecto
 El proyecto sigue una arquitectura modular para separar la lógica de negocio de la interfaz de usuario:
 
