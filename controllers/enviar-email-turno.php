@@ -126,9 +126,10 @@ if (isset($turno) && $turno) {
         $mail->Body    = 'Buenos días <b>' . $turno['pac_nombre'] . '</b>, Usted ha solicitado un turno en nuestra clínica OdontoPlus. El mismo ya está reservado, en unos minutos lo confirmaremos.';
 
         $mail->send();
-        header("Location: " . BASE_URL . "views/print-turno.php?id=" . $id_turno);
+        header("Location: " . BASE_URL . "views/print-turno.php?id=" . $id_turno . "&msg=email_sent");
         exit;
     } catch (Exception $e) {
-        echo "Error al enviar: {$mail->ErrorInfo}";
+        header("Location: " . BASE_URL . "views/print-turno.php?id=" . $id_turno . "&error=mail_error");
+        exit;
     }
 }
