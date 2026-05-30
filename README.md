@@ -276,9 +276,9 @@ ODONTOWEB/
 
 ![Turnos](public/img/screenshots/turnos.png)
 
+![Imprimir Turnos](public/img/screenshots/print_turno.png)
+
 ![Login Admin](public/img/screenshots/l-admin.png)
 
 ![Panel Admin](public/img/screenshots/p-admin.png)
-
-![Imprimir Turnos](public/img/screenshots/print_turno.png)
 
