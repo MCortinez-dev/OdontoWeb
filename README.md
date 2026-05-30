@@ -56,7 +56,7 @@ Asegúrese de que el directorio del proyecto mantenga el nombre exacto de la car
 - Acceda a su navegador web e ingrese a la interfaz de administración de bases de datos: `http://localhost/phpmyadmin/`.
 - Cree una nueva base de datos llamada exactamente odontoweb.
 - Seleccione la base de datos recién creada, diríjase a la pestaña "Importar", haga clic en "Seleccionar archivo" y busque el archivo de inicialización ubicado en: `models/odontoweb.sql`.
-- Haga clic en el botón "Importar" (o "Continuar") en la parte inferior para ejecutar las estructuras de tablas e insertar las semillas de especialidades y médicos precargados.
+- Haga clic en el botón "Importar" (o "Continuar") en la parte inferior para ejecutar las estructuras de tablas e insertar las semillas de especialidades y médicos precargados.\
 🔍 Nota Técnica sobre el Puerto de Conexión: > Por diseño del equipo, el archivo de conexión centralizado (includes/conexion.php) está configurado de forma predeterminada para conectarse al puerto 3307 de MySQL. Si su servidor XAMPP corre bajo el puerto clásico de MySQL (3306), abra el archivo `includes/conexion.php` y modifique la variable:
 ```php
 $port = "3306"; // Cambie de 3307 a 3306 según la configuración de su motor local
