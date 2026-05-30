@@ -82,7 +82,7 @@ if($resultado && $resultado->num_rows > 0){
     <!-- Sección actualización datos -->
     <section class="user-p" id="user-p">
         <h2>Actualizar Datos</h2>
-        <form action="<?php echo BASE_URL; ?>controllers/user-data-logic.php" method="post">
+        <form id="form_update" action="<?php echo BASE_URL; ?>controllers/user-data-logic.php" method="post">
             <input type="text" name="nombre" value="<?php echo $nombre_actual; ?>" required>
             <input type="text" name="apellido" value="<?php echo $apellido_actual; ?>" required>
             <input type="text" name="dni" value="<?php echo $dni_actual; ?>" required>
@@ -93,7 +93,6 @@ if($resultado && $resultado->num_rows > 0){
             
             <input type="submit" name="action" value="ACTUALIZAR" id="boton_actualizar">  
             <input type="submit" name="action" value="ELIMINAR" id="boton_eliminar">
-            <!-- Advertencia !! Falta verificar la contraseña del usuario para eliminar o quizas no (preguntar) -->
         </form>
     </section>
 
@@ -106,6 +105,53 @@ if($resultado && $resultado->num_rows > 0){
     </main>
 
     <?php include("../includes/footer.php"); ?>
+
+    <script src="<?php echo BASE_URL; ?>includes/funcion.js"></script>
+
+    <script>
+        const formUpdate = document.getElementById('form_update');
+        
+        // Variable para saber qué acción disparó el submit
+        let accionSeleccionada = '';
+
+        // Donde se hizo click
+        formUpdate.querySelectorAll('input[type="submit"]').forEach(boton => {
+            boton.addEventListener('click', function() {
+                accionSeleccionada = this.value.toLowerCase();
+            });
+        });
+
+        // Controla el envío del formulario
+        formUpdate.addEventListener('submit', function(event) {
+            
+            // CASO A: El usuario quiere eliminar la cuenta
+            if (accionSeleccionada === 'eliminar') {
+                const confirmarEliminacion = confirm("⚠️ ¿ESTÁ SEGURO DE QUE DESEA ELIMINAR SU CUENTA?\nEsta acción es irreversible y perderá todos sus turnos.");
+                if (!confirmarEliminacion) {
+                    event.preventDefault(); // Cancela el POST si se arrepiente
+                    return;
+                }
+            }
+
+            // CASO B: El usuario quiere actualizar sus datos
+            if (accionSeleccionada === 'actualizar') {
+                const pass = formUpdate.querySelector('input[name="password"]').value;
+                const confirmPass = formUpdate.querySelector('input[name="confirm_pass"]').value;
+
+                // Valida si escribió algo en el campo de contraseña
+                if (pass !== "" && pass !== confirmPass) {
+                    event.preventDefault(); // Frena el envío
+                    mostrarAlerta("⚠️ Las nuevas contraseñas ingresadas no coinciden.");
+                }
+            }
+        });
+
+        // 2. CAPTURA DE ÉXITO DESDE EL CONTROLADOR (URL)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('msg') === 'updated') {
+            mostrarAlerta("✨ Sus datos fueron actualizados correctamente.");
+        }
+    </script>
     
 </body>
 </html>
