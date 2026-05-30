@@ -1,12 +1,33 @@
 <?php include_once('../config.php'); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso Administrativo - OdontoWeb</title>
+    <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
+    <style>
+        .login input{
+            width:100%;
+            padding:12px;
+            margin-top:5px;
+            margin-bottom:15px;
+
+            border:1px solid #ccc;
+            border-radius:8px;
+
+            font-size:16px;
+            font-family:"Poppins", sans-serif;
+
+            appearance:none;
+            -webkit-appearance:none;
+            -moz-appearance:none;
+        }
+    </style>
 </head>
+
 <body>
     <?php include("../includes/header.php"); ?>
 

@@ -36,6 +36,7 @@ $resultado = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Panel de Administración - OdontoWeb</title>
+    <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
     <style>
         .tabla-admin { width: 95%; margin: 30px auto; border-collapse: collapse; background: white; }
