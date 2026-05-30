@@ -87,7 +87,7 @@ if (!isset($_SESSION['paciente_id'])) {
                     $diaSemana = date('N', strtotime($fechaCeld));
                     $esFinde = ($diaSemana >= 6);
 
-                    // Lógica de Fecha Pasada (Comparando con $hoyReferencia que definimos en el controlador)
+                    // Lógica de Fecha Pasada
                     $esPasado = ($fechaCeld < $hoyReferencia);
 
                     // Agrego la clase 'dia-pasado' si corresponde para el CSS
