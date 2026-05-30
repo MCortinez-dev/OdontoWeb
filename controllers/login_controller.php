@@ -26,8 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             header("Location: " . BASE_URL . "views/login.php?error=password_incorrecta");
+            exit();
         }
     } else {
         header("Location: " . BASE_URL . "views/login.php?error=usuario_no_encontrado");
+        exit();
     }
 }
+?>

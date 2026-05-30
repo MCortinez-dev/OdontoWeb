@@ -1,4 +1,5 @@
-<?php 
+<?php
+session_start();
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
 
 // Por si tiene una sesión ya iniciada, lo envia al panel de usuario.
@@ -45,6 +46,19 @@ if (isset($_SESSION['paciente_id'])) {
     </main>
 
     <?php include("../includes/footer.php"); ?>
-    
+
+    <script src="<?php echo BASE_URL; ?>/includes/funcion.js"></script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+
+        if (error === 'password_incorrecta') {
+            mostrarAlerta("❌ La contraseña ingresada no es válida. Intentá nuevamente.");
+        } else if (error === 'usuario_no_encontrado') {
+            mostrarAlerta("❌ El correo electrónico no corresponde a ningún paciente registrado.");
+        }
+    </script>
+
 </body>
 </html>
