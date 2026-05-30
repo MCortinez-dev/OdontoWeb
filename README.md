@@ -63,10 +63,10 @@ $port = "3306"; // Cambie de 3307 a 3306 según la configuración de su motor lo
 ```
 
 ### 4. Configuración de Credenciales del Servidor de Correo (SMTP)
--. El sistema requiere acceso a un servidor de correos seguro para despachar las notificaciones a los pacientes.
--. En la raíz del proyecto, busque el archivo plantilla llamado config.sample.php.
--. Saque una copia de este archivo y renombre la copia como config.local.php.
--. Abra config.local.php e ingrese sus credenciales de Gmail reales. Si utiliza autenticación en dos pasos de Google, recuerde generar una Contraseña de Aplicación dedicada de 16 caracteres:
+- El sistema requiere acceso a un servidor de correos seguro para despachar las notificaciones a los pacientes.
+- En la raíz del proyecto, busque el archivo plantilla llamado `config.sample.php`.
+- Saque una copia de este archivo y renombre la copia como `config.local.php`.
+- Abra `config.local.php` e ingrese sus credenciales de Gmail reales. Si utiliza autenticación en dos pasos de Google, recuerde generar una Contraseña de Aplicación dedicada de 16 caracteres:
 ```php
 <?php
 define('SMTP_USER', 'tu_correo_cuenta@gmail.com');
@@ -76,10 +76,12 @@ define('SMTP_PASS', 'abcd efgh ijkl mnop'); // Clave de aplicación de Google
 
 ### 5. Creación del Usuario Administrador Principal (Maestro)
 Para poder ingresar por primera vez al panel de auditoría administrativa:
-- Abra su navegador web y ejecute de forma directa el archivo de inicialización: http://localhost/ODONTOWEB/crear_maestro.php.
+- Abra su navegador web y ejecute de forma directa el archivo de inicialización: `http://localhost/ODONTOWEB/crear_maestro.php`.
 - El sistema le mostrará un mensaje confirmando la creación exitosa del perfil administrativo con las credenciales por defecto:
+``
 Usuario: admin
 Contraseña: admin123
+``
 🚨 IMPORTANTE POR SEGURIDAD: Una vez que visualice el cartel de éxito en pantalla, elimine el archivo crear_maestro.php de su servidor para evitar que usuarios externos puedan sobreescribir la cuenta administrativa.
 
 ### 6. Acceso al Sistema
