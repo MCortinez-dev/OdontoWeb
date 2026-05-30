@@ -52,12 +52,12 @@ cd OdontoWeb
 Asegúrese de que el directorio del proyecto mantenga el nombre exacto de la carpeta en mayúsculas/minúsculas si sus configuraciones de Apache son estrictas: ODONTOWEB o OdontoWeb.
 
 ### 3. Configuración y Despliegue de la Base de Datos
--. Inicie los módulos de Apache y MySQL desde el Panel de Control de XAMPP.
--. Acceda a su navegador web e ingrese a la interfaz de administración de bases de datos: http://localhost/phpmyadmin/.
--. Cree una nueva base de datos llamada exactamente odontoweb.
--. Seleccione la base de datos recién creada, diríjase a la pestaña "Importar", haga clic en "Seleccionar archivo" y busque el archivo de inicialización ubicado en: models/odontoweb.sql.
--. Haga clic en el botón "Importar" (o "Continuar") en la parte inferior para ejecutar las estructuras de tablas e insertar las semillas de especialidades y médicos precargados.
-🔍 Nota Técnica sobre el Puerto de Conexión: > Por diseño del equipo, el archivo de conexión centralizado (includes/conexion.php) está configurado de forma predeterminada para conectarse al puerto 3307 de MySQL. Si su servidor XAMPP corre bajo el puerto clásico de MySQL (3306), abra el archivo includes/conexion.php y modifique la variable:
+- Inicie los módulos de Apache y MySQL desde el Panel de Control de XAMPP.
+- Acceda a su navegador web e ingrese a la interfaz de administración de bases de datos: `http://localhost/phpmyadmin/`.
+- Cree una nueva base de datos llamada exactamente odontoweb.
+- Seleccione la base de datos recién creada, diríjase a la pestaña "Importar", haga clic en "Seleccionar archivo" y busque el archivo de inicialización ubicado en: `models/odontoweb.sql`.
+- Haga clic en el botón "Importar" (o "Continuar") en la parte inferior para ejecutar las estructuras de tablas e insertar las semillas de especialidades y médicos precargados.
+🔍 Nota Técnica sobre el Puerto de Conexión: > Por diseño del equipo, el archivo de conexión centralizado (includes/conexion.php) está configurado de forma predeterminada para conectarse al puerto 3307 de MySQL. Si su servidor XAMPP corre bajo el puerto clásico de MySQL (3306), abra el archivo `includes/conexion.php` y modifique la variable:
 ```php
 $port = "3306"; // Cambie de 3307 a 3306 según la configuración de su motor local
 ```
@@ -76,17 +76,17 @@ define('SMTP_PASS', 'abcd efgh ijkl mnop'); // Clave de aplicación de Google
 
 ### 5. Creación del Usuario Administrador Principal (Maestro)
 Para poder ingresar por primera vez al panel de auditoría administrativa:
--. Abra su navegador web y ejecute de forma directa el archivo de inicialización: http://localhost/ODONTOWEB/crear_maestro.php.
--. El sistema le mostrará un mensaje confirmando la creación exitosa del perfil administrativo con las credenciales por defecto:
+- Abra su navegador web y ejecute de forma directa el archivo de inicialización: http://localhost/ODONTOWEB/crear_maestro.php.
+- El sistema le mostrará un mensaje confirmando la creación exitosa del perfil administrativo con las credenciales por defecto:
 Usuario: admin
 Contraseña: admin123
 🚨 IMPORTANTE POR SEGURIDAD: Una vez que visualice el cartel de éxito en pantalla, elimine el archivo crear_maestro.php de su servidor para evitar que usuarios externos puedan sobreescribir la cuenta administrativa.
 
 ### 6. Acceso al Sistema
 Ya tiene el entorno configurado. Puede navegar de forma directa por la aplicación:
--. Portal Público (Inicio/Reserva): http://localhost/ODONTOWEB/index.php
--. Acceso directo a Login de Pacientes: http://localhost/ODONTOWEB/views/login.php
--. Acceso directo al Panel de Administradores: http://localhost/ODONTOWEB/views/login_admin.php
+- Portal Público (Inicio/Reserva): http://localhost/ODONTOWEB/index.php
+- Acceso directo a Login de Pacientes: http://localhost/ODONTOWEB/views/login.php
+- Acceso directo al Panel de Administradores: http://localhost/ODONTOWEB/views/login_admin.php
 
 ## 🔩 Diagrama de Arquitectura y Relaciones Completo
 
