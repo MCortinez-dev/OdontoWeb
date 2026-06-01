@@ -1,10 +1,9 @@
 <?php 
-// 1. INICIAR SESIÓN: Obligatorio ponerlo al principio para que funcione $_SESSION
+// INICIAR SESIÓN:
 session_start(); 
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
 
-// 2. AUTO-LOGIN: Si ya están logueados, los ruteamos directo a su Oficina sin pasar por el formulario
 if (isset($_SESSION['rol'])) {
     if ($_SESSION['rol'] === 'admin') {
         header("Location: " . BASE_URL . "views/panel_admin.php");
@@ -25,7 +24,6 @@ if (isset($_SESSION['rol'])) {
     <title>Inicio de Sesión - OdontoWeb</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
     <style>
-        /* Un estilo rápido para la caja de alerta de error */
         .alerta-error {
             background-color: #fee2e2;
             color: #991b1b;

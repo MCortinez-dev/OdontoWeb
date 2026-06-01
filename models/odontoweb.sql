@@ -74,3 +74,10 @@ INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES
 ('Sofía', 'Rodríguez', 1, 'tarde');
 
 -- poner usuarios para el 5
+
+/*Administradores*/
+CREATE TABLE administradores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+);

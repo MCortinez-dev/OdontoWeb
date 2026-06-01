@@ -10,6 +10,7 @@
 @import url("calendar.css");
 @import url("print.css");
 @import url("whatsapp.css");
+@import url("https://fonts.cdnfonts.com/css/ica-rubrik-black");
 
 *{
     margin:0;
@@ -31,50 +32,10 @@ html {
 main{
     flex: 1;
 }
-/* Contenedor principal (oculto por defecto) */
-.modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
-    backdrop-filter: blur(5px);
-}
-
-/* Cuando el ID es el objetivo del enlace, se muestra */
-.modal-container:target {
-    display: flex;
-}
-
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    animation: slideDown 0.4s ease;
-}
 
 @keyframes slideDown {
     from { transform: translateY(-50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
-}
-
-/* Modal de login */
-.modal-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 30px;
-    text-decoration: none;
-    color: #333;
 }
 
 .modal-buttons {
@@ -97,3 +58,216 @@ main{
 .admin { background-color: #F43F5E; }
 
 .btn-perfil:hover { opacity: 0.8; transform: scale(1.02); }
+
+/* Contenedor principal */
+.carrusel-contenedor {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.carrusel-slides {
+    display: flex;
+    width: 300%; 
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    width: 100%;
+}
+
+.slide img {
+    width: 100%;
+    display: block;
+}
+
+
+.carrusel-nav {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.carrusel-nav label {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+
+.slide {
+    position: relative;
+    width: 100%;
+}
+
+.carrusel-flechas {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    box-sizing: border-box;
+    pointer-events: none; 
+}
+
+.flecha {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    pointer-events: auto; 
+    user-select: none;
+}
+
+.flecha:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+#slide-0:checked ~ .carrusel-slides { transform: translateX(0%); }
+#slide-1:checked ~ .carrusel-slides { transform: translateX(-33.33%); }
+#slide-2:checked ~ .carrusel-slides { transform: translateX(-66.66%); }
+
+#slide-0:checked ~ .carrusel-nav label[for="slide-0"],
+#slide-1:checked ~ .carrusel-nav label[for="slide-1"],
+#slide-2:checked ~ .carrusel-nav label[for="slide-2"] {
+    background-color: #fff;
+}
+
+.banner-3d {
+    width: 100%;
+    height: 550px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(circle, #ffffff, #f0f4f8); 
+    border-radius: 20px; 
+    margin-top: 20px;
+}
+
+.banner-3d .slider {
+    position: absolute;
+    width: 220px; 
+    height: 280px; 
+    top: 15%;
+  
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: auto-rotate 20s linear infinite; 
+    z-index: 2;
+}
+
+@keyframes auto-rotate {
+    from {
+        transform: perspective(1000px) rotateX(-10deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-10deg) rotateY(360deg);
+    }
+}
+
+.banner-3d .slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity) * 1deg))
+    )
+    translateZ(280px); 
+    transition: all 0.3s linear;
+}
+
+.banner-3d .slider:hover {
+    animation-play-state: paused;
+}
+
+.banner-3d .slider .item:hover {
+    transform: rotateY(
+        calc((var(--position) - 1) * (360 / var(--quantity) * 1deg))
+    )
+    rotateX(5deg) translateZ(320px) scale(1.1); /* Se acerca hacia la pantalla */
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* ESTILOS DE LA TARJETA DEL SERVICIO        */
+
+.card-servicio {
+    background: white;
+    border: 2px solid #10B981; 
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none; 
+}
+
+.card-servicio h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-servicio p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.card-servicio img {
+    width: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* EL ELEMENTO CENTRAL FLOTANTE (Cepillo/Logo)*/
+
+.centro-3d-fijo {
+    position: absolute;
+    inset: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateZ(0); 
+    animation: anti-rotate 20s linear infinite;
+    pointer-events: none; 
+}
+
+/* Gira 360 grados pero en negativo para cancelar el giro del contenedor padre */
+@keyframes anti-rotate {
+    from { transform: translateZ(0) rotateY(0deg); }
+    to { transform: translateZ(0) rotateY(-360deg); }
+}
+
+.modelo-central {
+    width: 180px;
+    filter: drop-shadow(0 15px 10px rgba(0,0,0,0.2));
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
