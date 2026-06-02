@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 <?php 
-// INICIAR SESIÓN:
 session_start(); 
-
-=======
-<?php
-session_start();
->>>>>>> d32cf7d34ab90c12876ae73b6a3aca73f9af6881
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
 
 if (isset($_SESSION['rol'])) {
@@ -28,18 +21,6 @@ if (isset($_SESSION['rol'])) {
     <link rel="icon" href="<?php echo BASE_URL; ?>public/img/logo.png">
     <title>Inicio de Sesión - OdontoWeb</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
-    <style>
-        .alerta-error {
-            background-color: #fee2e2;
-            color: #991b1b;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            border: 1px solid #fca5a5;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -48,20 +29,6 @@ if (isset($_SESSION['rol'])) {
     <main class="m_login">
     <section class="login" id="login">
         <h2>Iniciar Sesión</h2>
-
-        <?php if (isset($_GET['error'])): ?>
-            <div class="alerta-error">
-                <?php 
-                    if ($_GET['error'] === 'credenciales_incorrectas') {
-                        echo "⚠️ El usuario o la contraseña son incorrectos.";
-                    } elseif ($_GET['error'] === 'acceso_denegado') {
-                        echo "🔒 Debe iniciar sesión como Administrador para acceder.";
-                    } else {
-                        echo "⚠️ Ocurrió un error al intentar ingresar.";
-                    }
-                ?>
-            </div>
-        <?php endif; ?>
 
         <form action="../controllers/login_controller.php" method="post">
             <input type="text" name="identificador" placeholder="Correo electrónico o Usuario" required>
@@ -78,8 +45,6 @@ if (isset($_SESSION['rol'])) {
     </main>
 
     <?php include("../includes/footer.php"); ?>
-<<<<<<< HEAD
-=======
 
     <script src="<?php echo BASE_URL; ?>/includes/funcion.js"></script>
 
@@ -87,13 +52,12 @@ if (isset($_SESSION['rol'])) {
         const urlParams = new URLSearchParams(window.location.search);
         const error = urlParams.get('error');
 
-        if (error === 'password_incorrecta') {
-            mostrarAlerta("❌ La contraseña ingresada no es válida. Intentá nuevamente.");
-        } else if (error === 'usuario_no_encontrado') {
-            mostrarAlerta("❌ El correo electrónico no corresponde a ningún paciente registrado.");
+        // Alerts JS
+        if (error === 'credenciales_incorrectas') {
+            mostrarAlerta("❌ El usuario o la contraseña no son válidos. Intentá nuevamente.");
+        } else if (error === 'acceso_denegado') {
+            mostrarAlerta("🔒 Debe iniciar sesión con los permisos correctos para acceder.");
         }
     </script>
-
->>>>>>> d32cf7d34ab90c12876ae73b6a3aca73f9af6881
 </body>
 </html>
