@@ -71,36 +71,6 @@ $total_imagenes = count($imagenes);
         <section class="servicios" id="servicios">
             <h2>Nuestros servicios</h2>
 
-            <div class="servicios-container">
-                <article id="art_1">
-                <h3>Odontología general</h3>
-                <p>Arreglos de caries.</p>
-                <img src="<?php echo BASE_URL; ?>public/img/art1.png" alt="Imagen Arreglo caries">
-                </article>
-
-                <article id="art_2">
-                <h3>Ortodoncia</h3>
-                <p>Corrección de la posición dental.</p>
-                <img src="<?php echo BASE_URL; ?>public/img/art2.jpg" alt="Imagen Ortodoncia">
-                </article>
-
-                <article id="art_3">
-                <h3>Implantes</h3>
-                <p>Soluciones modernas para reemplazar piezas dentales.</p>
-                <img src="<?php echo BASE_URL; ?>public/img/art3.jpg" alt="Imagen Implantes">
-                </article>
-
-                <article id="art_4">
-                <h3>Blanqueamiento</h3>
-                <p>Tratamientos estéticos para tu sonrisa.</p>
-                <img src="<?php echo BASE_URL; ?>public/img/art4.png" alt="Imagen Blanqueamiento">
-                </article>
-            </div>
-        </section>
-
-        <section class="servicios" id="servicios">
-            <h2>Nuestros servicios</h2>
-
             <div class="banner-3d">
                 <div class="slider" style="--quantity: 4">
                     
