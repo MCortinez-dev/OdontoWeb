@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 <?php 
 // INICIAR SESIÓN:
 session_start(); 
 
+=======
+<?php
+session_start();
+>>>>>>> d32cf7d34ab90c12876ae73b6a3aca73f9af6881
 include_once($_SERVER['DOCUMENT_ROOT'] . '/ODONTOWEB/config.php'); 
 
 if (isset($_SESSION['rol'])) {
@@ -73,5 +78,22 @@ if (isset($_SESSION['rol'])) {
     </main>
 
     <?php include("../includes/footer.php"); ?>
+<<<<<<< HEAD
+=======
+
+    <script src="<?php echo BASE_URL; ?>/includes/funcion.js"></script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+
+        if (error === 'password_incorrecta') {
+            mostrarAlerta("❌ La contraseña ingresada no es válida. Intentá nuevamente.");
+        } else if (error === 'usuario_no_encontrado') {
+            mostrarAlerta("❌ El correo electrónico no corresponde a ningún paciente registrado.");
+        }
+    </script>
+
+>>>>>>> d32cf7d34ab90c12876ae73b6a3aca73f9af6881
 </body>
 </html>

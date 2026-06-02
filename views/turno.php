@@ -87,7 +87,7 @@ if (!isset($_SESSION['paciente_id'])) {
                     $diaSemana = date('N', strtotime($fechaCeld));
                     $esFinde = ($diaSemana >= 6);
 
-                    // Lógica de Fecha Pasada (Comparando con $hoyReferencia que definimos en el controlador)
+                    // Lógica de Fecha Pasada
                     $esPasado = ($fechaCeld < $hoyReferencia);
 
                     // Agrego la clase 'dia-pasado' si corresponde para el CSS
@@ -134,7 +134,7 @@ if (!isset($_SESSION['paciente_id'])) {
             </div>
             
             <?php if (count($medicosDisponibles) > 0): ?>
-                <form action="" method="POST" class="form-doctor">
+                <form action="" method="POST" class="form-doctor"  id="form-confirmar">
                     <label>Elegí a tu profesional:</label>
                     <select name="id_medico" required>
                         <?php foreach ($medicosDisponibles as $med): ?>
@@ -160,5 +160,30 @@ if (!isset($_SESSION['paciente_id'])) {
     </main>
 
     <?php include("../includes/footer.php"); ?>
+
+    
+    <script src="<?php echo BASE_URL; ?>includes/funcion.js"></script>
+
+    <script>
+        // 1. CONTROL DE DOBLE CLICK EN RESERVAS
+        const formConfirmar = document.getElementById('form-confirmar');
+        if (formConfirmar) {
+            formConfirmar.addEventListener('submit', function() {
+                const btn = this.querySelector('.btn-confirmar');
+                if (btn) {
+                    btn.innerText = "⏳ RESERVANDO TURNO...";
+                    btn.disabled = true; // Deshabilita el botón inmediatamente
+                    btn.style.opacity = "0.6";
+                    btn.style.cursor = "not-allowed";
+                }
+            });
+        }
+
+        // 2. DETECCIÓN DE ERRORES DEL BACKEND
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('error') === 'db_insert_error') {
+            mostrarAlerta("❌ No pudimos procesar tu reserva. Por favor, selecciona el horario e intenta nuevamente.");
+        }
+    </script>
 </body>
 </html>

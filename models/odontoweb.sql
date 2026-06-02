@@ -38,6 +38,14 @@ CREATE TABLE turnos(
     FOREIGN KEY (id_medico) REFERENCES medicos(cod)
 );
 
+-- administrador
+CREATE TABLE administradores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL
+);
+
+
 /*Insertar especialidades*/
 INSERT INTO `especialidad` (`nombre`) VALUES 
 ('Odontología General'),

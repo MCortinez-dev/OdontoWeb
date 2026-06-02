@@ -23,7 +23,8 @@ if (isset($_POST['confirmar_turno'])) {
         header("Location: " . BASE_URL . "views/print-turno.php?id=" . $nuevo_id);
         exit();
     } else {
-        echo "<p class='error-msg'>Error al reservar: " . $conn->error . "</p>";
+        header("Location: " . BASE_URL . "views/turno.php?error=db_insert_error");
+        exit();
     }
 }
 
