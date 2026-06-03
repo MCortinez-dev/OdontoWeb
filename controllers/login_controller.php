@@ -40,22 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             header("Location: " . BASE_URL . "views/user_panel.php");
             exit();
-<<<<<<< HEAD
         }
     }
 
     
     header("Location: " . BASE_URL . "views/login.php?error=credenciales_incorrectas");
     exit();
-=======
-        } else {
-            header("Location: " . BASE_URL . "views/login.php?error=password_incorrecta");
-            exit();
-        }
-    } else {
-        header("Location: " . BASE_URL . "views/login.php?error=usuario_no_encontrado");
-        exit();
-    }
->>>>>>> d32cf7d34ab90c12876ae73b6a3aca73f9af6881
 }
 ?>
