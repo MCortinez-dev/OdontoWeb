@@ -33,7 +33,7 @@
 }
 
 /* Estilo de los inputs */
-.login input[type="email"],
+.login input[type="text"],
 .login input[type="password"] {
     padding: 12px;
     border: 2px solid #e2e8f0;
