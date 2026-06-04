@@ -81,11 +81,12 @@ INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES
 INSERT INTO medicos (nombre, apellido, id_especialidad, franja_horaria) VALUES 
 ('Sofía', 'Rodríguez', 1, 'tarde');
 
--- poner usuarios para el 5
+/* Usuario: admin | Clave: admin123 */
+INSERT IGNORE INTO administradores (usuario, password_hash) 
+VALUES ('admin', '$2y$10$Nf5/pP81RItGZ/D8XvW4A.147D22M0B6xIoknI0C3Q13yB78O4WJy');
 
-/*Administradores*/
-CREATE TABLE administradores (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL
-);
+
+/* 5 PACIENTES DE PRUEBA (Con clave: admin123)         */
+INSERT IGNORE INTO pacientes (nombre, apellido, DNI, email, telefono, password_hash) VALUES 
+('Pablo', 'Lopez', '11111111', 'pablolopez@test.com', '1122334455', '$2y$10$jIsEYC6cH9mhF9LY5yTrHe/enehASzv04duL/MPGC0.CLBc/Secxe'),
+('Juan', 'Perez', '12345678', 'juan@test.com', '1122334456', '$2y$10$jIsEYC6cH9mhF9LY5yTrHe/enehASzv04duL/MPGC0.CLBc/Secxe');
