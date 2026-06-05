@@ -9,7 +9,6 @@
 ];
 $total_imagenes = count($imagenes);
 ?>
-?>
 
 <!DOCTYPE html>
 <html lang="es">
